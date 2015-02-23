@@ -22,4 +22,8 @@ public class HelloTest {
         assertEquals("Hello", hello.getHello());
     }
     
+    @Test
+    public void testSubjectClass(){
+        Subject subject = new Subject();
+    }
 }
