@@ -5,6 +5,8 @@
  */
 package com.ohnana.model;
 
+import java.util.List;
+
 /**
  *
  * @author Filipovic
@@ -12,12 +14,12 @@ package com.ohnana.model;
 public class Proposal {
     private String title;
     private String description;
-    private String teachers;
+    private List <Teacher> teachers;
 
-    public Proposal(String title, String description, String teachers) {
+    public Proposal(String title, String description, List <Teacher> teachers) {
         this.title = title;
         this.description = description;
-        this.teachers = teachers;
+        this.teachers = teachers; 
     }
 
     public String getTitle() {
@@ -28,11 +30,9 @@ public class Proposal {
         return description;
     }
 
-    public String getTeachers() {
+    public List<Teacher> getTeachers() {
         return teachers;
     }
-    
-    
     
     
 }
