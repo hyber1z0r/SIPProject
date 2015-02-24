@@ -1,6 +1,7 @@
 package com.ohnana.control;
 
 import com.google.gson.Gson;
+import com.ohnana.model.ITeacher;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
 import javax.persistence.EntityManager;
@@ -20,7 +21,7 @@ public class JPAManager {
     }
 
     public void insertProposal(Proposal proposal) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();   
         em.getTransaction().begin();
         try {
             em.persist(proposal);
@@ -33,7 +34,7 @@ public class JPAManager {
         }
     }
 
-    public void insertTeacher(Teacher t1) {
+    public void insertTeacher(ITeacher t1) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {

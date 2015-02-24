@@ -28,7 +28,7 @@ public class ProposalTest {
     @Before
     public void setup() {
         facade = Facade.getFacade();
-        insertStaticTeachers();
+        insertStaticTeachers();        
     }
 
     public void insertStaticTeachers() {
@@ -41,8 +41,8 @@ public class ProposalTest {
 
         String title = "Android";
         String description = "Learning about android";
-        final Teacher t1 = new Teacher();
-        List<Teacher> teachers = new ArrayList() {
+        final ITeacher t1 = context.mock(ITeacher.class);
+        List<ITeacher> teachers = new ArrayList() {
             {
                 add(t1);
             }
@@ -60,11 +60,24 @@ public class ProposalTest {
     public void testInsertProposal() {
         String title = "Android";
         String description = "Learning about android";
-        List<Teacher> teachers = new ArrayList() {
+        List<ITeacher> teachers = new ArrayList() {
             {
                 add(t1);
             }
         };
         facade.insertProposal(title, description, teachers);
+    }
+    
+    @Test
+    public void testChooseAllProposal(){
+        facade.insertProposal("Math", "Learn to plus and minus", (List<ITeacher>) t1);
+        facade.insertProposal("Danish", "Learn the danish food", (List<ITeacher>) t1);
+        facade.insertProposal("IT", "Basics in Word and PowerPoint",(List<ITeacher>) t1);
+        facade.insertProposal("Swimming", "Learn to swim", (List<ITeacher>) t1);
+        
+        facade.getAllProposals();
+        
+        
+        
     }
 }
