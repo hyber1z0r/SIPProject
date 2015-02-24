@@ -14,9 +14,9 @@ import java.util.List;
 public class Proposal {
     private String title;
     private String description;
-    private List <Teacher> teachers;
+    private List <TeacherInterface> teachers;
 
-    public Proposal(String title, String description, List <Teacher> teachers) {
+    public Proposal(String title, String description, List <TeacherInterface> teachers) {
         this.title = title;
         this.description = description;
         this.teachers = teachers; 
@@ -30,7 +30,7 @@ public class Proposal {
         return description;
     }
 
-    public List<Teacher> getTeachers() {
+    public List<TeacherInterface> getTeachers() {
         return teachers;
     }
     
