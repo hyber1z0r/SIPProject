@@ -1,5 +1,6 @@
 package com.ohnana.control;
 
+import com.ohnana.model.ITeacher;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
 import java.util.List;
@@ -25,13 +26,13 @@ public class Facade {
         return instance;
     }
     
-    public void insertProposal(String title, String description, List<Teacher> teachers) {
+    public void insertProposal(String title, String description, List<ITeacher> teachers) {
         // check args
         Proposal proposal = new Proposal(title, description, teachers);
         manager.insertProposal(proposal);
     }
 
-    public void insertTeacher(Teacher t1) {
+    public void insertTeacher(ITeacher t1) {
         manager.insertTeacher(t1);
     }
 
