@@ -1,6 +1,6 @@
 package com.ohnana.control;
 
-import com.ohnana.model.ITeacher;
+import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Facade {
         manager.insertProposal(proposal);
     }
 
-    public void insertTeacher(ITeacher t1) {
+    public void insertTeacher(Teacher t1) {
         manager.insertTeacher(t1);
     }
     

@@ -1,9 +1,11 @@
 package com.ohnana.mocks;
 
-import com.ohnana.control.IJPAManager;
-import com.ohnana.model.IElectiveSubject;
-import com.ohnana.model.ITeacher;
+import com.ohnana.interfaces.IJPAManager;
+import com.ohnana.interfaces.IElectiveSubject;
+import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Proposal;
+import com.ohnana.model.Teacher;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,16 +24,6 @@ public class JPAMock implements IJPAManager {
     }
 
     @Override
-    public void insertProposal(Proposal proposal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void insertTeacher(ITeacher t1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void insertElectiveSubjects(List<IElectiveSubject> es) {
         for (IElectiveSubject e : es) {
             electivesubjects.add(e);
@@ -40,6 +32,16 @@ public class JPAMock implements IJPAManager {
     
     public List<IElectiveSubject> getAllElectiveSubjects() {
         return electivesubjects;
+    }
+
+    @Override
+    public void insertProposal(Proposal proposal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void insertTeacher(Teacher t1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

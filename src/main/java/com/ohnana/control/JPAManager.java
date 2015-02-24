@@ -1,10 +1,12 @@
 package com.ohnana.control;
 
+import com.ohnana.interfaces.IJPAManager;
 import com.google.gson.Gson;
-import com.ohnana.model.ITeacher;
+import com.ohnana.interfaces.IElectiveSubject;
+import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +16,7 @@ import javax.persistence.Query;
  *
  * @author jakobgaardandersen
  */
-public class JPAManager {
+public class JPAManager implements IJPAManager {
 
     private final EntityManagerFactory emf;
     private final Gson gson = new Gson();
@@ -23,8 +25,9 @@ public class JPAManager {
         this.emf = emf;
     }
 
+    @Override
     public void insertProposal(Proposal proposal) {
-        EntityManager em = emf.createEntityManager();   
+        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
             em.persist(proposal);
@@ -37,7 +40,8 @@ public class JPAManager {
         }
     }
 
-    public void insertTeacher(ITeacher t1) {
+    @Override
+    public void insertTeacher(Teacher t1) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -51,19 +55,23 @@ public class JPAManager {
         }
     }
 
-   public List<Proposal> getAllProposals() {
+    public List<Proposal> getAllProposals() {
         EntityManager em = emf.createEntityManager();
-            try {
-                Query query = em.createNamedQuery("Proposal.getAll");
-                List<Proposal> proposal = query.getResultList();
-                return proposal;
-            } catch (Exception ex)
-            {
-                System.err.println(ex.getMessage());
-                return null;
-            } finally {
-                em.close();
-            }
-         }
+        try {
+            Query query = em.createNamedQuery("Proposal.getAll");
+            List<Proposal> proposal = query.getResultList();
+            return proposal;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void insertElectiveSubjects(List<IElectiveSubject> es) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

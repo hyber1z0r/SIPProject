@@ -1,6 +1,8 @@
 package com.ohnana.model;
 
-import com.ohnana.control.IJPAManager;
+import com.ohnana.interfaces.IElectiveSubject;
+import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.mocks.JPAMock;
 import java.util.ArrayList;
 import java.util.List;

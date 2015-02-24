@@ -1,5 +1,6 @@
 package com.ohnana.model;
 
+import com.ohnana.interfaces.ITeacher;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

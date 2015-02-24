@@ -1,5 +1,7 @@
 package com.ohnana.model;
 
+import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.ITeacher;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PROPOSALS")
 @NamedQueries({
- @NamedQuery (name = "Proposal.getAll", query = "SELECT p FROM Proposals p")
+    @NamedQuery(name = "Proposal.getAll", query = "SELECT p FROM Proposal p")
 })
 public class Proposal implements IProposal, Serializable {
 
@@ -75,7 +77,5 @@ public class Proposal implements IProposal, Serializable {
         }
         return true;
     }
-    
-    
 
 }

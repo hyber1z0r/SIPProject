@@ -1,10 +1,13 @@
 package com.ohnana.model;
 
+import com.ohnana.interfaces.IElectiveSubject;
+import com.ohnana.interfaces.IProposal;
+
 /**
  *
  * @author jakobgaardandersen
  */
-public class ElectiveSubject {
+public class ElectiveSubject implements IElectiveSubject {
 
     private IProposal proposal;
 
@@ -15,7 +18,5 @@ public class ElectiveSubject {
     public IProposal getProposal() {
         return proposal;
     }
-    
-    
 
 }

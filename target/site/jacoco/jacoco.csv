@@ -1,6 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-SIPProject,com.ohnana.model,Proposal,25,0,0,0,10,0,9,0,9,0
-SIPProject,com.ohnana.model,Teacher,17,0,0,0,8,0,7,0,7,0
-SIPProject,com.ohnana.control,JPAManager,20,0,0,0,4,0,4,0,4,0
-SIPProject,com.ohnana.control,Facade,37,0,2,0,11,0,6,0,5,0
-SIPProject,com.ohnana.sipproject,Hello,0,5,0,0,0,2,0,2,0,2

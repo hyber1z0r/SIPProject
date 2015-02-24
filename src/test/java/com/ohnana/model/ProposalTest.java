@@ -5,6 +5,7 @@
  */
 package com.ohnana.model;
 
+import com.ohnana.interfaces.ITeacher;
 import com.ohnana.control.Facade;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,10 +71,15 @@ public class ProposalTest {
     
     @Test
     public void testChooseAllProposal(){
-        facade.insertProposal("Math", "Learn to plus and minus", (List<ITeacher>) t1);
-        facade.insertProposal("Danish", "Learn the danish food", (List<ITeacher>) t1);
-        facade.insertProposal("IT", "Basics in Word and PowerPoint",(List<ITeacher>) t1);
-        facade.insertProposal("Swimming", "Learn to swim", (List<ITeacher>) t1);
+        List<ITeacher> teachers = new ArrayList() {
+            {
+                add(t1);
+            }
+        };
+        facade.insertProposal("Math", "Learn to plus and minus", teachers);
+        facade.insertProposal("Danish", "Learn the danish food", teachers);
+        facade.insertProposal("IT", "Basics in Word and PowerPoint",teachers);
+        facade.insertProposal("Swimming", "Learn to swim", teachers);
        
         List<Proposal> allProposals = facade.getAllProposals();
         

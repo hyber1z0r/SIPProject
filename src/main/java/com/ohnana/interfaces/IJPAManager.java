@@ -1,8 +1,7 @@
-package com.ohnana.control;
+package com.ohnana.interfaces;
 
-import com.ohnana.model.IElectiveSubject;
-import com.ohnana.model.ITeacher;
 import com.ohnana.model.Proposal;
+import com.ohnana.model.Teacher;
 import java.util.List;
 
 /**
@@ -11,6 +10,6 @@ import java.util.List;
  */
 public interface IJPAManager {
     void insertProposal(Proposal proposal);
-    void insertTeacher(ITeacher t1);
+    void insertTeacher(Teacher t1);
     void insertElectiveSubjects(List<IElectiveSubject> es);
 }

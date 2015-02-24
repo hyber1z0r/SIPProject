@@ -1,4 +1,4 @@
-package com.ohnana.model;
+package com.ohnana.interfaces;
 
 /**
  *
