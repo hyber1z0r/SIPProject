@@ -5,6 +5,7 @@
  */
 package com.ohnana.model;
 
+import com.ohnana.control.Facade;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
@@ -12,6 +13,7 @@ import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -20,14 +22,27 @@ import static org.junit.Assert.*;
 public class ProposalTest {
 
     public Mockery context = new JUnitRuleMockery();
+    private Facade facade;
+    private Teacher t1;
+
+    @Before
+    public void setup() {
+        facade = Facade.getFacade();
+        insertStaticTeachers();
+    }
+
+    public void insertStaticTeachers() {
+        t1 = new Teacher();
+        facade.insertTeacher(t1);
+    }
 
     @Test
     public void testProposalClass() {
 
         String title = "Android";
         String description = "Learning about android";
-        final TeacherInterface t1 = context.mock(TeacherInterface.class);
-        List<TeacherInterface> teachers = new ArrayList() {
+        final Teacher t1 = new Teacher();
+        List<Teacher> teachers = new ArrayList() {
             {
                 add(t1);
             }
@@ -41,4 +56,15 @@ public class ProposalTest {
 
     }
 
+    @Test
+    public void testInsertProposal() {
+        String title = "Android";
+        String description = "Learning about android";
+        List<Teacher> teachers = new ArrayList() {
+            {
+                add(t1);
+            }
+        };
+        facade.insertProposal(title, description, teachers);
+    }
 }

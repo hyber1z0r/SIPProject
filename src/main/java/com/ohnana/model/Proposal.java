@@ -1,25 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ohnana.model;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
- * @author Filipovic
+ * @author jakobgaardandersen
  */
-public class Proposal {
+@Entity
+@Table(name = "PROPOSALS")
+public class Proposal implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String title;
     private String description;
-    private List <TeacherInterface> teachers;
+    private List<Teacher> teachers;
 
-    public Proposal(String title, String description, List <TeacherInterface> teachers) {
+    public Proposal() {
+    }
+
+    public Proposal(String title, String description, List<Teacher> teachers) {
         this.title = title;
         this.description = description;
-        this.teachers = teachers; 
+        this.teachers = teachers;
     }
 
     public String getTitle() {
@@ -30,9 +41,36 @@ public class Proposal {
         return description;
     }
 
-    public List<TeacherInterface> getTeachers() {
+    public List<Teacher> getTeachers() {
         return teachers;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Proposal other = (Proposal) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
     
     
+
 }
