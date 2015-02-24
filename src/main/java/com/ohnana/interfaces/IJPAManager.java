@@ -9,7 +9,12 @@ import java.util.List;
  * @author jakobgaardandersen
  */
 public interface IJPAManager {
-    void insertProposal(Proposal proposal);
-    void insertTeacher(Teacher t1);
+
+    void insertProposal(IProposal proposal);
+
+    void insertTeacher(ITeacher teacher);
+
     void insertElectiveSubjects(List<IElectiveSubject> es);
+
+    List<IProposal> getAllProposals();
 }

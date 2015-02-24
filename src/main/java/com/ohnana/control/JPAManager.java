@@ -26,7 +26,7 @@ public class JPAManager implements IJPAManager {
     }
 
     @Override
-    public void insertProposal(Proposal proposal) {
+    public void insertProposal(IProposal proposal) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -41,11 +41,11 @@ public class JPAManager implements IJPAManager {
     }
 
     @Override
-    public void insertTeacher(Teacher t1) {
+    public void insertTeacher(ITeacher teacher) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
-            em.persist(t1);
+            em.persist(teacher);
             em.getTransaction().commit();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
@@ -55,11 +55,12 @@ public class JPAManager implements IJPAManager {
         }
     }
 
-    public List<Proposal> getAllProposals() {
+    @Override
+    public List<IProposal> getAllProposals() {
         EntityManager em = emf.createEntityManager();
         try {
             Query query = em.createNamedQuery("Proposal.getAll");
-            List<Proposal> proposal = query.getResultList();
+            List<IProposal> proposal = query.getResultList();
             return proposal;
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
@@ -71,7 +72,19 @@ public class JPAManager implements IJPAManager {
 
     @Override
     public void insertElectiveSubjects(List<IElectiveSubject> es) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            for (IElectiveSubject e : es) {
+                em.persist(e);
+            }
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
     }
 
 }

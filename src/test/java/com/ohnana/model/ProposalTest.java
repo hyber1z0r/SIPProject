@@ -23,66 +23,21 @@ import org.junit.Before;
 public class ProposalTest {
 
     public Mockery context = new JUnitRuleMockery();
-    private Facade facade;
-    private Teacher t1;
-
-    @Before
-    public void setup() {
-        facade = Facade.getFacade();
-        insertStaticTeachers();        
-    }
-
-    public void insertStaticTeachers() {
-        t1 = new Teacher();
-        facade.insertTeacher(t1);
-    }
 
     @Test
     public void testProposalClass() {
-
         String title = "Android";
         String description = "Learning about android";
-        final ITeacher t1 = context.mock(ITeacher.class);
+        final ITeacher teacher = context.mock(ITeacher.class);
         List<ITeacher> teachers = new ArrayList() {
             {
-                add(t1);
+                add(teacher);
             }
         };
 
         Proposal proposal = new Proposal(title, description, teachers);
-
         assertThat(proposal.getTitle(), is(title));
         assertThat(proposal.getDescription(), is(description));
         assertThat(proposal.getTeachers(), is(teachers));
-
-    }
-
-    @Test
-    public void testInsertProposal() {
-        String title = "Android";
-        String description = "Learning about android";
-        List<ITeacher> teachers = new ArrayList() {
-            {
-                add(t1);
-            }
-        };
-        facade.insertProposal(title, description, teachers);
-    }
-    
-    @Test
-    public void testChooseAllProposal(){
-        List<ITeacher> teachers = new ArrayList() {
-            {
-                add(t1);
-            }
-        };
-        facade.insertProposal("Math", "Learn to plus and minus", teachers);
-        facade.insertProposal("Danish", "Learn the danish food", teachers);
-        facade.insertProposal("IT", "Basics in Word and PowerPoint",teachers);
-        facade.insertProposal("Swimming", "Learn to swim", teachers);
-       
-        List<Proposal> allProposals = facade.getAllProposals();
-        
-        assertTrue(allProposals.size() == 4);
     }
 }

@@ -18,9 +18,23 @@ import java.util.Map;
 public class JPAMock implements IJPAManager {
 
     private List<IElectiveSubject> electivesubjects;
+    private List<IProposal> proposals;
+    private List<ITeacher> teachers;
 
     public JPAMock() {
         electivesubjects = new ArrayList<>();
+        proposals = new ArrayList<>();
+        teachers = new ArrayList<>();
+    }
+
+    @Override
+    public void insertProposal(IProposal proposal) {
+        proposals.add(proposal);
+    }
+
+    @Override
+    public void insertTeacher(ITeacher teacher) {
+        teachers.add(teacher);
     }
 
     @Override
@@ -29,19 +43,12 @@ public class JPAMock implements IJPAManager {
             electivesubjects.add(e);
         }
     }
-    
-    public List<IElectiveSubject> getAllElectiveSubjects() {
-        return electivesubjects;
-    }
 
     @Override
-    public void insertProposal(Proposal proposal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<IProposal> getAllProposals() {
+        return proposals;
     }
 
-    @Override
-    public void insertTeacher(Teacher t1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
 }

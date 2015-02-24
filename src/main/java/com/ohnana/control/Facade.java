@@ -1,5 +1,6 @@
 package com.ohnana.control;
 
+import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
@@ -28,15 +29,15 @@ public class Facade {
     
     public void insertProposal(String title, String description, List<ITeacher> teachers) {
         // check args
-        Proposal proposal = new Proposal(title, description, teachers);
+        IProposal proposal = new Proposal(title, description, teachers);
         manager.insertProposal(proposal);
     }
 
-    public void insertTeacher(Teacher t1) {
-        manager.insertTeacher(t1);
+    public void insertTeacher(ITeacher teacher) {
+        manager.insertTeacher(teacher);
     }
     
-    public List<Proposal> getAllProposals()
+    public List<IProposal> getAllProposals()
     {
         return manager.getAllProposals();
     }

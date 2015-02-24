@@ -20,13 +20,7 @@ import org.junit.Before;
 public class ElectiveSubjectTest {
 
     public Mockery context = new JUnitRuleMockery();
-    
-    private IJPAManager manager = new JPAMock();
-    
-    @Before
-    public void setup() {
-        
-    }
+   
     
     @Test
     public void testElectiveSubject() {
@@ -35,18 +29,6 @@ public class ElectiveSubjectTest {
         assertThat(es.getProposal(), is(proposal));
     }
     
-    @Test
-    public void insertElectiveSubject() {
-        IProposal proposal = context.mock(IProposal.class);
-        final ElectiveSubject es = new ElectiveSubject(proposal);
-        List<IElectiveSubject> electives = new ArrayList() {
-            {
-                add(es);
-            }
-        };
-        manager.insertElectiveSubjects(electives);
-        
-    }
     
     
     
