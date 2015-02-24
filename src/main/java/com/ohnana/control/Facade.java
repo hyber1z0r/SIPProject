@@ -35,5 +35,10 @@ public class Facade {
     public void insertTeacher(ITeacher t1) {
         manager.insertTeacher(t1);
     }
+    
+    public List<Proposal> getAllProposals()
+    {
+        return manager.getAllProposals();
+    }
 
 }

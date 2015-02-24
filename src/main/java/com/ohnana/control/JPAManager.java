@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import com.ohnana.model.ITeacher;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -47,5 +50,20 @@ public class JPAManager {
             em.close();
         }
     }
+
+   public List<Proposal> getAllProposals() {
+        EntityManager em = emf.createEntityManager();
+            try {
+                Query query = em.createNamedQuery("Proposal.getAll");
+                List<Proposal> proposal = query.getResultList();
+                return proposal;
+            } catch (Exception ex)
+            {
+                System.err.println(ex.getMessage());
+                return null;
+            } finally {
+                em.close();
+            }
+         }
 
 }

@@ -74,10 +74,9 @@ public class ProposalTest {
         facade.insertProposal("Danish", "Learn the danish food", (List<ITeacher>) t1);
         facade.insertProposal("IT", "Basics in Word and PowerPoint",(List<ITeacher>) t1);
         facade.insertProposal("Swimming", "Learn to swim", (List<ITeacher>) t1);
+       
+        List<Proposal> allProposals = facade.getAllProposals();
         
-        facade.getAllProposals();
-        
-        
-        
+        assertTrue(allProposals.size() == 4);
     }
 }
