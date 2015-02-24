@@ -1,5 +1,8 @@
 package com.ohnana.model;
 
+import static org.hamcrest.CoreMatchers.is;
+import org.jmock.Mockery;
+import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -9,11 +12,17 @@ import static org.junit.Assert.*;
  */
 public class ElectiveSubjectTest {
 
+    public Mockery context = new JUnitRuleMockery();
+    
     @Test
     public void testElectiveSubject() {
-        ElectiveSubject es = new ElectiveSubject();
-        assertTrue(es != null);
+        IProposal proposal = context.mock(IProposal.class);
+        ElectiveSubject es = new ElectiveSubject(proposal);
+        
+        assertThat(es.getProposal(), is(proposal));
+        
     }
+    
     
     
 

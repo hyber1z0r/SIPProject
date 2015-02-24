@@ -1,6 +1,6 @@
 package com.ohnana.sipproject;
 
-import com.ohnana.model.TeacherInterface;
+import com.ohnana.model.ITeacher;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;

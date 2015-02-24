@@ -10,7 +10,7 @@ package com.ohnana.model;
  *
  * @author Filipovic
  */
-public interface TeacherInterface {
+public interface ITeacher {
     
     
 }

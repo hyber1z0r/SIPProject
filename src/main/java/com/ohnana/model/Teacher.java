@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TEACHERS")
-public class Teacher implements TeacherInterface, Serializable {
+public class Teacher implements ITeacher, Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

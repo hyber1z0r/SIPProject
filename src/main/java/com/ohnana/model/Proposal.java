@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PROPOSALS")
-public class Proposal implements Serializable {
+public class Proposal implements IProposal, Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,12 +22,12 @@ public class Proposal implements Serializable {
     private int id;
     private String title;
     private String description;
-    private List<Teacher> teachers;
+    private List<ITeacher> teachers;
 
     public Proposal() {
     }
 
-    public Proposal(String title, String description, List<Teacher> teachers) {
+    public Proposal(String title, String description, List<ITeacher> teachers) {
         this.title = title;
         this.description = description;
         this.teachers = teachers;
@@ -41,7 +41,7 @@ public class Proposal implements Serializable {
         return description;
     }
 
-    public List<Teacher> getTeachers() {
+    public List<ITeacher> getTeachers() {
         return teachers;
     }
 

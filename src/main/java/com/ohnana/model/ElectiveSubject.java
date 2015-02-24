@@ -6,9 +6,16 @@ package com.ohnana.model;
  */
 public class ElectiveSubject {
 
-    public ElectiveSubject() {
+    private IProposal proposal;
+
+    public ElectiveSubject(IProposal proposal) {
+        this.proposal = proposal;
+    }
+
+    public IProposal getProposal() {
+        return proposal;
     }
     
     
-    
+
 }
