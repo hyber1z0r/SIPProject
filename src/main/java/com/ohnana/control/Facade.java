@@ -3,7 +3,6 @@ package com.ohnana.control;
 import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Proposal;
-import com.ohnana.model.Teacher;
 import java.util.List;
 import javax.persistence.Persistence;
 

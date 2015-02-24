@@ -8,14 +8,12 @@ import com.ohnana.mocks.JPAMock;
 import com.ohnana.model.ElectiveSubject;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
-import com.sun.org.glassfish.external.probe.provider.annotations.Probe;
 import java.util.ArrayList;
 import java.util.List;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 /**
  *
