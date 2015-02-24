@@ -33,9 +33,10 @@ public class JPAMockTest {
     public void testInsertProposal() {
         String title = "Android";
         String description = "Learning about android";
+        final ITeacher teacher = context.mock(ITeacher.class);
         List<ITeacher> teachers = new ArrayList() {
             {
-                add(new Teacher());
+                add(teacher);
             }
         };
         IProposal proposal = new Proposal(title, description, teachers);

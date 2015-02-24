@@ -9,7 +9,7 @@ import com.ohnana.interfaces.IProposal;
  */
 public class ElectiveSubject implements IElectiveSubject {
 
-    private IProposal proposal;
+    private final IProposal proposal;
 
     public ElectiveSubject(IProposal proposal) {
         this.proposal = proposal;
