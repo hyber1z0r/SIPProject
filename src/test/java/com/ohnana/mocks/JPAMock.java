@@ -22,9 +22,9 @@ public class JPAMock implements IJPAManager {
     private List<ITeacher> teachers;
 
     public JPAMock() {
-        electivesubjects = new ArrayList<>();
-        proposals = new ArrayList<>();
-        teachers = new ArrayList<>();
+        electivesubjects = new ArrayList();
+        proposals = new ArrayList();
+        teachers = new ArrayList();
     }
 
     @Override
