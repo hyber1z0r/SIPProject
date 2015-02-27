@@ -30,6 +30,7 @@ public class JPAManager implements IJPAManager {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
+            // if it doesn't work, typecast
             em.persist(proposal);
             em.getTransaction().commit();
         } catch (Exception ex) {
