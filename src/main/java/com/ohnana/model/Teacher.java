@@ -20,7 +20,26 @@ public class Teacher implements ITeacher, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    private String name;
+    private String initials;
 
+    public Teacher() {
+    }
+
+    public Teacher(String name, String initials) {
+        this.name = name;
+        this.initials = initials;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getInitials() {
+        return initials;
+    }    
+    
     public int getId() {
         return id;
     }
