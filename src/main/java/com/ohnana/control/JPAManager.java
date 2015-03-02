@@ -30,8 +30,8 @@ public class JPAManager implements IJPAManager {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
-            // if it doesn't work, typecast
-            em.persist(proposal);
+            Proposal p = (Proposal) proposal;
+            em.persist(p);
             em.getTransaction().commit();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
@@ -83,6 +83,21 @@ public class JPAManager implements IJPAManager {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<ITeacher> getAllTeachers() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Teacher.getAll");
+            List<ITeacher> teachers = query.getResultList();
+            return teachers;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
         } finally {
             em.close();
         }

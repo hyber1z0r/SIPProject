@@ -49,6 +49,11 @@ public class JPAMock implements IJPAManager {
         return proposals;
     }
 
+    @Override
+    public List<ITeacher> getAllTeachers() {
+        return teachers;
+    }
+
   
 
 }

@@ -17,4 +17,6 @@ public interface IJPAManager {
     void insertElectiveSubjects(List<IElectiveSubject> es);
 
     List<IProposal> getAllProposals();
+    
+    List<ITeacher> getAllTeachers();
 }

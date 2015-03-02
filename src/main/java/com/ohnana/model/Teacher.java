@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -14,11 +17,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TEACHERS")
+@NamedQueries({
+    @NamedQuery(name = "Teacher.getAll", query = "SELECT t FROM Teacher t")
+})
 public class Teacher implements ITeacher, Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JoinColumn(name = "TeacherID", table = "PROPOSAL_TEACHER")
     private int id;
     
     private String name;
