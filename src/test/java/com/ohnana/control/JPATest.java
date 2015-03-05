@@ -1,8 +1,12 @@
 package com.ohnana.control;
 
 import com.ohnana.interfaces.IJPAManager;
+import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.ITeacher;
+import com.ohnana.model.Proposal;
 import com.ohnana.model.Teacher;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Persistence;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,26 +17,38 @@ import org.junit.Before;
  * @author jakobgaardandersen
  */
 public class JPATest {
-    
+
     private IJPAManager manager;
-    
+    private List<ITeacher> teachers;
+
     @Before
     public void setup() {
         manager = new JPAManager(Persistence.createEntityManagerFactory("com.ohnana_SIPProject"));
-        
+        teachers = new ArrayList() {
+            {
+                add(new Teacher("Peter Lorensen", "pelo"));
+                add(new Teacher("Anders Kalhauge", "aka"));
+                add(new Teacher("Tobias Grundtvig", "tog"));
+            }
+        };
     }
-    
+
     @Test
     public void testInsertTeacher() {
-        ITeacher t1 = new Teacher();
-        ITeacher t2 = new Teacher();
-        ITeacher t3 = new Teacher();
-        manager.insertTeacher(t1);
-        manager.insertTeacher(t2);
-        manager.insertTeacher(t3);
-       
+        for (ITeacher t : teachers) {
+            manager.insertTeacher(t);
+        }
+        List<ITeacher> ts = manager.getAllTeachers();
+        assertEquals(ts.size(), 3);
     }
-    
-    
-    
+
+    @Test
+    public void testInsertProposal() {
+        
+        IProposal p1 = new Proposal("Android", "Learn about the android platform", teachers);
+        manager.insertProposal(p1);
+        List<IProposal> proposals = manager.getAllProposals();
+        assertEquals(proposals.size(), 1);
+    }
+
 }
