@@ -52,8 +52,8 @@ public class JPATest {
 
     @Test
     public void testInsertProposal() {
-        
-        IProposal p1 = new Proposal("Android", "Learn about the android platform", teachers.get(0));
+        List<ITeacher> allTeachers = manager.getAllTeachers();
+        IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0));
         manager.insertProposal(p1);
         List<IProposal> proposals = manager.getAllProposals();
         assertEquals(proposals.size(), 1);
