@@ -19,4 +19,6 @@ public interface IJPAManager {
     List<IProposal> getAllProposals();
     
     List<ITeacher> getAllTeachers();
+    
+    void removeTeacher(ITeacher teacher);
 }

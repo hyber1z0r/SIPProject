@@ -29,15 +29,10 @@ public class ProposalTest {
         String title = "Android";
         String description = "Learning about android";
         final ITeacher teacher = context.mock(ITeacher.class);
-        List<ITeacher> teachers = new ArrayList() {
-            {
-                add(teacher);
-            }
-        };
 
-        Proposal proposal = new Proposal(title, description, teachers);
+        Proposal proposal = new Proposal(title, description, teacher);
         assertThat(proposal.getTitle(), is(title));
         assertThat(proposal.getDescription(), is(description));
-        assertThat(proposal.getTeachers(), is(teachers));
+        assertThat(proposal.getTeacher(), is(teacher));
     }
 }

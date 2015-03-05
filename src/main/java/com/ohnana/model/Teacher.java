@@ -77,7 +77,7 @@ public class Teacher implements ITeacher, Serializable {
 
     @Override
     public String toString() {
-        return "com.ohnana.model.Teacher[ id=" + id + " ]";
+        return name + " (" + initials.toUpperCase() + ")";
     }
 
 }

@@ -8,6 +8,7 @@ import com.ohnana.model.Teacher;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Persistence;
+import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -32,6 +33,13 @@ public class JPATest {
             }
         };
     }
+    
+    @After
+    public void cleanUp() {
+        for (ITeacher t : teachers) {
+            manager.removeTeacher(t);
+        }
+    }
 
     @Test
     public void testInsertTeacher() {
@@ -45,7 +53,7 @@ public class JPATest {
     @Test
     public void testInsertProposal() {
         
-        IProposal p1 = new Proposal("Android", "Learn about the android platform", teachers);
+        IProposal p1 = new Proposal("Android", "Learn about the android platform", teachers.get(0));
         manager.insertProposal(p1);
         List<IProposal> proposals = manager.getAllProposals();
         assertEquals(proposals.size(), 1);

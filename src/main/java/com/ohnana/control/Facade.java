@@ -26,9 +26,9 @@ public class Facade {
         return instance;
     }
     
-    public void insertProposal(String title, String description, List<ITeacher> teachers) {
+    public void insertProposal(String title, String description, ITeacher teacher) {
         // check args
-        IProposal proposal = new Proposal(title, description, teachers);
+        IProposal proposal = new Proposal(title, description, teacher);
         manager.insertProposal(proposal);
     }
 
@@ -39,6 +39,11 @@ public class Facade {
     public List<IProposal> getAllProposals()
     {
         return manager.getAllProposals();
+    }
+    
+    public List<ITeacher> getAllTeachers()
+    {
+        return manager.getAllTeachers();
     }
 
 }

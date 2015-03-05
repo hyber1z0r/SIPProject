@@ -5,6 +5,12 @@
  */
 package com.ohnana.presentation;
 
+import com.ohnana.control.Facade;
+import com.ohnana.interfaces.ITeacher;
+import java.util.List;
+import java.util.Stack;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Filipovic
@@ -14,8 +20,15 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    private Facade facade;
+    private String user = "PELO";
+
     public GUI() {
         initComponents();
+
+        facade = Facade.getFacade();
+
+        fillTeachers(facade.getAllTeachers());
     }
 
     /**
@@ -33,7 +46,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldTitle = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxFillTeacher = new javax.swing.JComboBox();
         jButtonCommit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescription = new javax.swing.JTextArea();
@@ -94,9 +107,19 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFillTeacher.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFillTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFillTeacherActionPerformed(evt);
+            }
+        });
 
         jButtonCommit.setText("Commit");
+        jButtonCommit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCommitActionPerformed(evt);
+            }
+        });
 
         jTextAreaDescription.setColumns(20);
         jTextAreaDescription.setRows(5);
@@ -121,7 +144,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
                                 .addGap(29, 29, 29)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jComboBoxFillTeacher, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
@@ -135,7 +158,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxFillTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -442,6 +465,47 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
+    private void jComboBoxFillTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFillTeacherActionPerformed
+
+    }//GEN-LAST:event_jComboBoxFillTeacherActionPerformed
+
+    private void jButtonCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCommitActionPerformed
+        Stack<String> errorStack = new Stack();
+        if (jTextFieldTitle.getText().trim().isEmpty()) {
+            errorStack.push("no title");
+        }
+        if (jComboBoxFillTeacher.getSelectedItem().toString().equals("Select teacher")) {
+            errorStack.push("no teacher");
+        }
+        if (jTextAreaDescription.getText().trim().isEmpty()) {
+            errorStack.push("no description");
+        }
+
+        if (errorStack.size() > 0) {
+            String res = "Elective subject rejected: \n";
+            for (String s : errorStack) {
+                res += s + "\n";
+            }
+            JOptionPane.showMessageDialog(null, res, "Alert!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // no missing information
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                // put it into the database here
+                facade.insertProposal(jTextFieldTitle.getText(), jTextAreaDescription.getText(), (ITeacher)jComboBoxFillTeacher.getSelectedItem());
+                JOptionPane.showMessageDialog(null, "Successfully created your proposal", "Success!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonCommitActionPerformed
+
+    private void fillTeachers(List<ITeacher> teachers) {
+        jComboBoxFillTeacher.removeAllItems();
+        jComboBoxFillTeacher.addItem("Select teacher");
+        for (ITeacher teacher : teachers) {
+            jComboBoxFillTeacher.addItem(teacher);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -488,7 +552,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSaveRound1;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonShowSelectedSubjects;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBoxFillTeacher;
     private javax.swing.JComboBox jComboBoxPoolA;
     private javax.swing.JComboBox jComboBoxPoolB;
     private javax.swing.JLabel jLabel1;

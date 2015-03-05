@@ -102,5 +102,19 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
+    
+    public void removeTeacher(ITeacher teacher) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.remove(teacher);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
 
 }

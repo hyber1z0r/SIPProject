@@ -33,15 +33,15 @@ public class Proposal implements IProposal, Serializable {
     private int id;
     private String title;
     private String description;
-    private List<ITeacher> teachers;
+    private ITeacher teacher;
 
     public Proposal() {
     }
 
-    public Proposal(String title, String description, List<ITeacher> teachers) {
+    public Proposal(String title, String description, ITeacher teacher) {
         this.title = title;
         this.description = description;
-        this.teachers = teachers;
+        this.teacher = teacher;
     }
 
     public String getTitle() {
@@ -52,8 +52,8 @@ public class Proposal implements IProposal, Serializable {
         return description;
     }
 
-    public List<ITeacher> getTeachers() {
-        return teachers;
+    public ITeacher getTeacher() {
+        return teacher;
     }
 
     public int getId() {

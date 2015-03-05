@@ -34,26 +34,18 @@ public class JPAMockTest {
         String title = "Android";
         String description = "Learning about android";
         final ITeacher teacher = context.mock(ITeacher.class);
-        List<ITeacher> teachers = new ArrayList() {
-            {
-                add(teacher);
-            }
-        };
-        IProposal proposal = new Proposal(title, description, teachers);
+        IProposal proposal = new Proposal(title, description, teacher);
         manager.insertProposal(proposal);
     }
     
     @Test
     public void testChooseAllProposal(){
-        List<ITeacher> teachers = new ArrayList() {
-            {
-                add(new Teacher());
-            }
-        };
-        IProposal ip1 = new Proposal("Math", "Learn to plus and minus", teachers);
-        IProposal ip2 = new Proposal("Danish", "Learn the danish food", teachers);
-        IProposal ip3 = new Proposal("IT", "Basics in Word and PowerPoint", teachers);
-        IProposal ip4 = new Proposal("Swimming", "Learn to swim", teachers);
+        ITeacher teacher = new Teacher();
+
+        IProposal ip1 = new Proposal("Math", "Learn to plus and minus", teacher);
+        IProposal ip2 = new Proposal("Danish", "Learn the danish food", teacher);
+        IProposal ip3 = new Proposal("IT", "Basics in Word and PowerPoint", teacher);
+        IProposal ip4 = new Proposal("Swimming", "Learn to swim", teacher);
         manager.insertProposal(ip1);
         manager.insertProposal(ip2);
         manager.insertProposal(ip3);

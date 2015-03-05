@@ -54,6 +54,13 @@ public class JPAMock implements IJPAManager {
         return teachers;
     }
 
+    @Override
+    public void removeTeacher(ITeacher teacher) {
+        for (ITeacher t : teachers) {
+            if(t == teacher) teachers.remove(t);
+        }
+    }
+
   
 
 }
