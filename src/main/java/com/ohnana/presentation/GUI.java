@@ -44,6 +44,7 @@ public class GUI extends javax.swing.JFrame {
         jListAddedProposals = new javax.swing.JList();
         jButtonAddProposal = new javax.swing.JButton();
         jButtonRemoveProposal = new javax.swing.JButton();
+        jButtonSaveRound1 = new javax.swing.JButton();
         HoPFinalSelection = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jComboBoxPoolA = new javax.swing.JComboBox();
@@ -186,25 +187,32 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jButtonSaveRound1.setText("Save round");
+
         javax.swing.GroupLayout HoP1RoundSelectionLayout = new javax.swing.GroupLayout(HoP1RoundSelection);
         HoP1RoundSelection.setLayout(HoP1RoundSelectionLayout);
         HoP1RoundSelectionLayout.setHorizontalGroup(
             HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonAddProposal)
-                    .addComponent(jButtonRemoveProposal))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAddProposal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonRemoveProposal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(jButtonSaveRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
         HoP1RoundSelectionLayout.setVerticalGroup(
             HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoP1RoundSelectionLayout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,7 +221,9 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jButtonAddProposal)
                         .addGap(138, 138, 138)
                         .addComponent(jButtonRemoveProposal)))
-                .addGap(65, 65, 65))
+                .addGap(31, 31, 31)
+                .addComponent(jButtonSaveRound1)
+                .addGap(23, 23, 23))
         );
 
         getContentPane().add(HoP1RoundSelection, "card3");
@@ -475,6 +485,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCommit;
     private javax.swing.JButton jButtonRemoveProposal;
     private javax.swing.JButton jButtonSave;
+    private javax.swing.JButton jButtonSaveRound1;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonShowSelectedSubjects;
     private javax.swing.JComboBox jComboBox1;
