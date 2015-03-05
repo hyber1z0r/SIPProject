@@ -52,6 +52,7 @@ public class JPATest {
 
     @Test
     public void testInsertProposal() {
+        // Getting all teachers, and inserting a new proposal
         List<ITeacher> allTeachers = manager.getAllTeachers();
         IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0));
         manager.insertProposal(p1);
