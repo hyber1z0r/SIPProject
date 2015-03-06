@@ -12,11 +12,14 @@ import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author jakobgaardandersen
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JPATest {
 
     private IJPAManager manager;
@@ -24,7 +27,7 @@ public class JPATest {
 
     @Before
     public void setup() {
-        manager = new JPAManager(Persistence.createEntityManagerFactory("com.ohnana_SIPProject"));
+        manager = new JPAManager(Persistence.createEntityManagerFactory("com.ohnana_SIPProject_TEST"));
         teachers = new ArrayList() {
             {
                 add(new Teacher("Peter Lorensen", "pelo"));
@@ -34,16 +37,8 @@ public class JPATest {
         };
     }
 
-    // fix this method
-//    @After
-//    public void cleanUp() {
-//        for (ITeacher t : teachers) {
-//            manager.removeTeacher(t);
-//        }
-//    }
-
     @Test
-    public void testInsertTeacher() {
+    public void test_A_InsertTeacher() throws Exception {
         List<ITeacher> oldTs = manager.getAllTeachers();
         for (ITeacher t : teachers) {
             manager.insertTeacher(t);
@@ -53,7 +48,7 @@ public class JPATest {
     }
 
     @Test
-    public void testInsertProposal() {
+    public void test_B_InsertProposal() throws Exception {
         // Getting all teachers, and inserting a new proposal
         List<ITeacher> allTeachers = manager.getAllTeachers();
         List<IProposal> oldProposals = manager.getAllProposals();
