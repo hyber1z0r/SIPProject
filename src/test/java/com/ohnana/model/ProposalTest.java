@@ -6,15 +6,11 @@
 package com.ohnana.model;
 
 import com.ohnana.interfaces.ITeacher;
-import com.ohnana.control.Facade;
-import java.util.ArrayList;
-import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 /**
  *

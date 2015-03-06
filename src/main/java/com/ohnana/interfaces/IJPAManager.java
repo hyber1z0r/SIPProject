@@ -1,7 +1,5 @@
 package com.ohnana.interfaces;
 
-import com.ohnana.model.Proposal;
-import com.ohnana.model.Teacher;
 import java.util.List;
 
 /**

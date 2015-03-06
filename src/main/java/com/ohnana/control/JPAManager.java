@@ -6,7 +6,6 @@ import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Proposal;
-import com.ohnana.model.Teacher;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,8 +30,7 @@ public class JPAManager implements IJPAManager {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
-            Proposal p = (Proposal) proposal;
-            em.persist(p);
+            em.persist(proposal);
             em.getTransaction().commit();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());

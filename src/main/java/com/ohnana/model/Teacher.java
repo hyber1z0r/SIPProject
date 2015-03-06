@@ -39,10 +39,12 @@ public class Teacher implements ITeacher, Serializable {
         this.initials = initials;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getInitials() {
         return initials;
     }    

@@ -4,12 +4,8 @@ import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.ITeacher;
-import com.ohnana.model.Proposal;
-import com.ohnana.model.Teacher;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -17,9 +13,9 @@ import java.util.Map;
  */
 public class JPAMock implements IJPAManager {
 
-    private List<IElectiveSubject> electivesubjects;
-    private List<IProposal> proposals;
-    private List<ITeacher> teachers;
+    private final List<IElectiveSubject> electivesubjects;
+    private final List<IProposal> proposals;
+    private final List<ITeacher> teachers;
 
     public JPAMock() {
         electivesubjects = new ArrayList();
@@ -57,15 +53,14 @@ public class JPAMock implements IJPAManager {
     @Override
     public void removeTeacher(ITeacher teacher) {
         for (ITeacher t : teachers) {
-            if(t == teacher) teachers.remove(t);
+            if (t == teacher) {
+                teachers.remove(t);
+            }
         }
     }
 
     @Override
     public List<IElectiveSubject> getAllElectiveSubjects() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return electivesubjects;
     }
-
-  
-
 }

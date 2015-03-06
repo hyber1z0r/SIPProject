@@ -44,14 +44,17 @@ public class Proposal implements IProposal, Serializable {
         this.teacher = teacher;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public ITeacher getTeacher() {
         return teacher;
     }

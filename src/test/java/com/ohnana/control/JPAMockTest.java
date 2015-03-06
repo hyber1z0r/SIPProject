@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class JPAMockTest {
     
-    private IJPAManager manager;
+    private final IJPAManager manager;
     public Mockery context;
 
     public JPAMockTest() {

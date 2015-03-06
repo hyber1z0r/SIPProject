@@ -33,31 +33,34 @@ public class JPATest {
             }
         };
     }
-    
-    @After
-    public void cleanUp() {
-        for (ITeacher t : teachers) {
-            manager.removeTeacher(t);
-        }
-    }
+
+    // fix this method
+//    @After
+//    public void cleanUp() {
+//        for (ITeacher t : teachers) {
+//            manager.removeTeacher(t);
+//        }
+//    }
 
     @Test
     public void testInsertTeacher() {
+        List<ITeacher> oldTs = manager.getAllTeachers();
         for (ITeacher t : teachers) {
             manager.insertTeacher(t);
         }
         List<ITeacher> ts = manager.getAllTeachers();
-        assertEquals(ts.size(), 3);
+        assertEquals(ts.size(), oldTs.size() + 3);
     }
 
     @Test
     public void testInsertProposal() {
         // Getting all teachers, and inserting a new proposal
         List<ITeacher> allTeachers = manager.getAllTeachers();
+        List<IProposal> oldProposals = manager.getAllProposals();
         IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0));
         manager.insertProposal(p1);
         List<IProposal> proposals = manager.getAllProposals();
-        assertEquals(proposals.size(), 1);
+        assertEquals(proposals.size(), oldProposals.size() + 1);
     }
 
 }
