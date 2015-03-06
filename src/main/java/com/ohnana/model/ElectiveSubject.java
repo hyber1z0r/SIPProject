@@ -67,4 +67,11 @@ public class ElectiveSubject implements IElectiveSubject, Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return proposal.toString();
+    }
+    
+    
 }
