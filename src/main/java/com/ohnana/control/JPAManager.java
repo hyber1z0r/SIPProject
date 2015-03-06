@@ -27,6 +27,7 @@ public class JPAManager implements IJPAManager {
 
     @Override
     public void insertProposal(IProposal proposal) {
+        /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -43,6 +44,7 @@ public class JPAManager implements IJPAManager {
 
     @Override
     public void insertTeacher(ITeacher teacher) {
+        /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -73,6 +75,7 @@ public class JPAManager implements IJPAManager {
 
     @Override
     public void insertElectiveSubjects(List<IElectiveSubject> es) {
+        /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -103,7 +106,9 @@ public class JPAManager implements IJPAManager {
         }
     }
     
+    @Override
     public void removeTeacher(ITeacher teacher) {
+        /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
