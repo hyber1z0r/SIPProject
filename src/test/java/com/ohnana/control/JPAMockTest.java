@@ -30,7 +30,7 @@ public class JPAMockTest {
     }
 
     @Test
-    public void testInsertProposal() {
+    public void testInsertProposal() throws Exception {
         String title = "Android";
         String description = "Learning about android";
         final ITeacher teacher = context.mock(ITeacher.class);
@@ -39,7 +39,7 @@ public class JPAMockTest {
     }
     
     @Test
-    public void testChooseAllProposal(){
+    public void testChooseAllProposal() throws Exception{
         ITeacher teacher = new Teacher();
 
         IProposal ip1 = new Proposal("Math", "Learn to plus and minus", teacher);
@@ -57,7 +57,7 @@ public class JPAMockTest {
     }
     
     @Test
-    public void insertElectiveSubject() {
+    public void insertElectiveSubject() throws Exception {
         IProposal proposal = context.mock(IProposal.class);
         final ElectiveSubject es = new ElectiveSubject(proposal);
         List<IElectiveSubject> electives = new ArrayList() {
