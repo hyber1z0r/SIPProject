@@ -82,4 +82,10 @@ public class Proposal implements IProposal, Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
+
+    
 }
