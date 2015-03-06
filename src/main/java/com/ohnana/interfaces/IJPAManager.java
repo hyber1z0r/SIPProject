@@ -8,17 +8,17 @@ import java.util.List;
  */
 public interface IJPAManager {
 
-    void insertProposal(IProposal proposal);
+    void insertProposal(IProposal proposal) throws Exception;
 
-    void insertTeacher(ITeacher teacher);
+    void insertTeacher(ITeacher teacher) throws Exception;
 
-    void insertElectiveSubjects(List<IElectiveSubject> es);
+    void insertElectiveSubjects(List<IElectiveSubject> es) throws Exception;
 
     List<IProposal> getAllProposals();
     
     List<ITeacher> getAllTeachers();
     
-    void removeTeacher(ITeacher teacher);
+    void removeTeacher(ITeacher teacher) throws Exception;
     
     List<IElectiveSubject> getAllElectiveSubjects();
 }

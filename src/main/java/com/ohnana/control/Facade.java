@@ -29,13 +29,13 @@ public class Facade {
         return instance;
     }
 
-    public void insertProposal(String title, String description, ITeacher teacher) {
+    public void insertProposal(String title, String description, ITeacher teacher) throws Exception {
         // check args
         IProposal proposal = new Proposal(title, description, teacher);
         manager.insertProposal(proposal);
     }
 
-    public void insertTeacher(ITeacher teacher) {
+    public void insertTeacher(ITeacher teacher) throws Exception {
         // check args
         manager.insertTeacher(teacher);
     }
@@ -48,7 +48,8 @@ public class Facade {
         return manager.getAllTeachers();
     }
 
-    public void insertElectiveSubjects(List<IProposal> proposals) {
+    public void insertElectiveSubjects(List<IProposal> proposals) throws Exception {
+        // check args
         List<IElectiveSubject> es = new ArrayList();
         for (IProposal proposal : proposals) {
             es.add(new ElectiveSubject(proposal));

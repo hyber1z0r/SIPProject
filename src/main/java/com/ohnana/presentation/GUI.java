@@ -12,6 +12,8 @@ import com.ohnana.interfaces.ITeacher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -59,7 +61,7 @@ public class GUI extends javax.swing.JFrame {
         jList1dot0.setModel(new DefaultListModel());
         jList2dot0.setModel(new DefaultListModel());
         jList0dot0.setModel(new DefaultListModel());
-        jListShowSelectedSubjects.setModel (new DefaultListModel());
+        jListShowSelectedSubjects.setModel(new DefaultListModel());
         modelAddedProposals = (DefaultListModel) jListAddedProposals.getModel();
         modelProposals = (DefaultListModel) jListProposals.getModel();
         modelComboBoxA = (DefaultComboBoxModel) jComboBoxPoolA.getModel();
@@ -515,7 +517,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTitleActionPerformed
 
     private void jButtonRemoveProposalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveProposalActionPerformed
-       
+
         if (jListAddedProposals.getSelectedIndex() != -1) {
             modelProposals.addElement(jListAddedProposals.getSelectedValue());
             modelAddedProposals.removeElementAt(jListAddedProposals.getSelectedIndex());
@@ -552,9 +554,13 @@ public class GUI extends javax.swing.JFrame {
             // no missing information
             int result = JOptionPane.showConfirmDialog(null, "Are you sure", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION) {
-                // put it into the database here
-                facade.insertProposal(jTextFieldTitle.getText(), jTextAreaDescription.getText(), (ITeacher) jComboBoxFillTeacher.getSelectedItem());
-                JOptionPane.showMessageDialog(null, "Successfully created your proposal", "Success!", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    // put it into the database here
+                    facade.insertProposal(jTextFieldTitle.getText(), jTextAreaDescription.getText(), (ITeacher) jComboBoxFillTeacher.getSelectedItem());
+                    JOptionPane.showMessageDialog(null, "Successfully created your proposal", "Success!", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_jButtonCommitActionPerformed
@@ -570,10 +576,14 @@ public class GUI extends javax.swing.JFrame {
         Object[] round1Array = modelAddedProposals.toArray();
         List<IProposal> proposals = new ArrayList();
         for (Object o : round1Array) {
-            proposals.add((IProposal)o);
+            proposals.add((IProposal) o);
         }
-        facade.insertElectiveSubjects(proposals); 
-        JOptionPane.showMessageDialog(null, "Successfully created round 1", "Success!", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            facade.insertElectiveSubjects(proposals);
+            JOptionPane.showMessageDialog(null, "Successfully created round 1", "Success!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonSaveRound1ActionPerformed
 
     private void fillTeachers(List<ITeacher> teachers) {
@@ -583,8 +593,8 @@ public class GUI extends javax.swing.JFrame {
             jComboBoxFillTeacher.addItem(teacher);
         }
     }
-    
-    private void clearAllListsInFinalSelection(){
+
+    private void clearAllListsInFinalSelection() {
         modelComboBoxA.removeAllElements();
         modelComboBoxB.removeAllElements();
         modelList1dot1.removeAllElements();
@@ -594,7 +604,7 @@ public class GUI extends javax.swing.JFrame {
         modelList2dot0.removeAllElements();
         modelList0dot0.removeAllElements();
         modelListSelectedSubjects.removeAllElements();
-                
+
     }
 
     private void fillList1Round(List<IProposal> proposals) {
@@ -603,14 +613,14 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    private void fillPools(List<IElectiveSubject> es)
-    {
+    private void fillPools(List<IElectiveSubject> es) {
         System.out.println(es.size());
         for (IElectiveSubject e : es) {
             modelComboBoxA.addElement(e);
             modelComboBoxB.addElement(e);
         }
     }
+
     /**
      * @param args the command line arguments
      */

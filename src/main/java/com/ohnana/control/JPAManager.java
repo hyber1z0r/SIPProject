@@ -1,11 +1,9 @@
 package com.ohnana.control;
 
 import com.ohnana.interfaces.IJPAManager;
-import com.google.gson.Gson;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.ITeacher;
-import com.ohnana.model.Proposal;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,14 +16,13 @@ import javax.persistence.Query;
 public class JPAManager implements IJPAManager {
 
     private final EntityManagerFactory emf;
-    private final Gson gson = new Gson();
 
     public JPAManager(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
     @Override
-    public void insertProposal(IProposal proposal) {
+    public void insertProposal(IProposal proposal) throws Exception {
         /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -35,13 +32,14 @@ public class JPAManager implements IJPAManager {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             em.getTransaction().rollback();
+            throw new Exception("Database error: insert proposal. Did rollback");
         } finally {
             em.close();
         }
     }
 
     @Override
-    public void insertTeacher(ITeacher teacher) {
+    public void insertTeacher(ITeacher teacher) throws Exception {
         /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -51,6 +49,8 @@ public class JPAManager implements IJPAManager {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             em.getTransaction().rollback();
+            throw new Exception("Database error: insert teacher. Did rollback");
+
         } finally {
             em.close();
         }
@@ -72,7 +72,7 @@ public class JPAManager implements IJPAManager {
     }
 
     @Override
-    public void insertElectiveSubjects(List<IElectiveSubject> es) {
+    public void insertElectiveSubjects(List<IElectiveSubject> es) throws Exception {
         /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -84,6 +84,8 @@ public class JPAManager implements IJPAManager {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             em.getTransaction().rollback();
+            throw new Exception("Database error: insert electivesubjects. Did rollback");
+
         } finally {
             em.close();
         }
@@ -103,9 +105,9 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
-    
+
     @Override
-    public void removeTeacher(ITeacher teacher) {
+    public void removeTeacher(ITeacher teacher) throws Exception {
         /* throw exception if something goes wrong */
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -115,11 +117,13 @@ public class JPAManager implements IJPAManager {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             em.getTransaction().rollback();
+            throw new Exception("Database error: remove teacher. Did rollback");
+
         } finally {
             em.close();
         }
     }
-    
+
     @Override
     public List<IElectiveSubject> getAllElectiveSubjects() {
         EntityManager em = emf.createEntityManager();
