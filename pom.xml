@@ -36,37 +36,50 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.ferstl</groupId>
-            <artifactId>spring-jdbc-oracle-ojdbc</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.2</version>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>dk.cphbusiness</id>
+            <name>Cphbusiness</name>
+            <url>http://datdb.cphbusiness.dk:8080/repository</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </releases>
+            <layout>default</layout>
+        </repository>
+    </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     <build>
-       <plugins>
-           <plugin>
-               <groupId>org.jacoco</groupId>
-               <artifactId>jacoco-maven-plugin</artifactId>
-               <version>0.7.3.201502191951</version>
-               <executions>
-                   <execution>
-                       <goals>
-                           <goal>prepare-agent</goal>
-                       </goals>
-                   </execution>
-                   <execution>
-                       <id>report</id>
-                       <phase>prepare-package</phase>
-                       <goals>
-                           <goal>report</goal>
-                       </goals>
-                   </execution>
-               </executions>
-           </plugin>
-       </plugins>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.3.201502191951</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

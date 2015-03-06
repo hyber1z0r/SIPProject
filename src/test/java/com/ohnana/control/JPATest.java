@@ -8,7 +8,6 @@ import com.ohnana.model.Teacher;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Persistence;
-import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
