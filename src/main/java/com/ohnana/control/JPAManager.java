@@ -107,24 +107,6 @@ public class JPAManager implements IJPAManager {
     }
 
     @Override
-    public void removeTeacher(ITeacher teacher) throws Exception {
-        /* throw exception if something goes wrong */
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.remove(teacher);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-            em.getTransaction().rollback();
-            throw new Exception("Database error: remove teacher. Did rollback");
-
-        } finally {
-            em.close();
-        }
-    }
-
-    @Override
     public List<IElectiveSubject> getAllElectiveSubjects() {
         EntityManager em = emf.createEntityManager();
         try {

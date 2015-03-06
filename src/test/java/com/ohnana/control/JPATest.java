@@ -8,6 +8,7 @@ import com.ohnana.model.Teacher;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Persistence;
+import static org.hamcrest.CoreMatchers.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -47,7 +48,7 @@ public class JPATest {
     }
 
     @Test
-    public void test_B_InsertProposal() throws Exception {
+    public void test_C_InsertProposal() throws Exception {
         // Getting all teachers, and inserting a new proposal
         List<ITeacher> allTeachers = manager.getAllTeachers();
         List<IProposal> oldProposals = manager.getAllProposals();
@@ -55,6 +56,19 @@ public class JPATest {
         manager.insertProposal(p1);
         List<IProposal> proposals = manager.getAllProposals();
         assertEquals(proposals.size(), oldProposals.size() + 1);
+    }
+
+    @Test
+    public void test_D_GetAllProposals() {
+        // dependent on test_b
+        List<IProposal> allProposals = manager.getAllProposals();
+        assertEquals(allProposals.size(), 1);
+    }
+
+    @Test
+    public void test_B_GetAllProposals() {
+        List<IProposal> allProposals = manager.getAllProposals();
+        assertThat(allProposals.size(), is(0));
     }
 
 }

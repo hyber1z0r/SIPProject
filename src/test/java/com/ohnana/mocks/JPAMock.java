@@ -51,15 +51,6 @@ public class JPAMock implements IJPAManager {
     }
 
     @Override
-    public void removeTeacher(ITeacher teacher) {
-        for (ITeacher t : teachers) {
-            if (t == teacher) {
-                teachers.remove(t);
-            }
-        }
-    }
-
-    @Override
     public List<IElectiveSubject> getAllElectiveSubjects() {
         return electivesubjects;
     }

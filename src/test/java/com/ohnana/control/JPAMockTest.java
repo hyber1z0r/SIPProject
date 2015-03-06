@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * @author jakobgaardandersen
  */
 public class JPAMockTest {
-    
+
     private final IJPAManager manager;
     public Mockery context;
 
@@ -37,9 +37,9 @@ public class JPAMockTest {
         IProposal proposal = new Proposal(title, description, teacher);
         manager.insertProposal(proposal);
     }
-    
+
     @Test
-    public void testChooseAllProposal() throws Exception{
+    public void testGetAllProposal() throws Exception {
         ITeacher teacher = new Teacher();
 
         IProposal ip1 = new Proposal("Math", "Learn to plus and minus", teacher);
@@ -50,14 +50,28 @@ public class JPAMockTest {
         manager.insertProposal(ip2);
         manager.insertProposal(ip3);
         manager.insertProposal(ip4);
-       
+
         List<IProposal> allProposals = manager.getAllProposals();
-        
+
         assertTrue(allProposals.size() == 4);
     }
-    
+
     @Test
-    public void insertElectiveSubject() throws Exception {
+    public void testInsertTeacher() throws Exception {
+        ITeacher teacher = new Teacher("Anders Kalhauge", "aka");
+        manager.insertTeacher(teacher);
+    }
+
+    @Test
+    public void testGetAllTeachers() throws Exception {
+        ITeacher teacher = new Teacher("Anders Kalhauge", "aka");
+        manager.insertTeacher(teacher);
+        List<ITeacher> allTeachers = manager.getAllTeachers();
+        assertEquals(allTeachers.size(), 1);
+    }
+
+    @Test
+    public void testInsertElectiveSubject() throws Exception {
         IProposal proposal = context.mock(IProposal.class);
         final ElectiveSubject es = new ElectiveSubject(proposal);
         List<IElectiveSubject> electives = new ArrayList() {
@@ -66,7 +80,22 @@ public class JPAMockTest {
             }
         };
         manager.insertElectiveSubjects(electives);
-        
+
     }
-    
+
+    @Test
+    public void testGetAllElectiveSubjects() throws Exception {
+        IProposal proposal = context.mock(IProposal.class);
+        final ElectiveSubject es = new ElectiveSubject(proposal);
+        List<IElectiveSubject> electives = new ArrayList() {
+            {
+                add(es);
+                add(es);
+                add(es);
+            }
+        };
+        manager.insertElectiveSubjects(electives);
+        List<IElectiveSubject> allElectiveSubjects = manager.getAllElectiveSubjects();
+        assertEquals(allElectiveSubjects.size(), 3);
+    }
 }
