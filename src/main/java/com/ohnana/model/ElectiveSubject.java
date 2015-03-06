@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -15,6 +17,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ELECTIVESUBJECTS")
+@NamedQueries({
+    @NamedQuery(name = "ElectiveSubject.getAll", query = "SELECT e FROM ElectiveSubject e")
+})
 public class ElectiveSubject implements IElectiveSubject, Serializable {
 
     @Id

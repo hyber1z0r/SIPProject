@@ -121,5 +121,20 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
+    
+    @Override
+    public List<IElectiveSubject> getAllElectiveSubjects() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("ElectiveSubject.getAll");
+            List<IElectiveSubject> es = query.getResultList();
+            return es;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
 }

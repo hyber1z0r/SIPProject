@@ -61,6 +61,11 @@ public class JPAMock implements IJPAManager {
         }
     }
 
+    @Override
+    public List<IElectiveSubject> getAllElectiveSubjects() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 
 }

@@ -55,5 +55,9 @@ public class Facade {
         }
         manager.insertElectiveSubjects(es);
     }
-    
+
+    public List<IElectiveSubject> getAllElectiveSubject() {
+        return manager.getAllElectiveSubjects();
+    }
+
 }

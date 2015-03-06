@@ -21,4 +21,6 @@ public interface IJPAManager {
     List<ITeacher> getAllTeachers();
     
     void removeTeacher(ITeacher teacher);
+    
+    List<IElectiveSubject> getAllElectiveSubjects();
 }
