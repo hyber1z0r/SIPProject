@@ -1,14 +1,19 @@
 package com.ohnana.model;
 
+import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.ITeacher;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,11 +30,15 @@ public class Teacher implements ITeacher, Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JoinColumn(name = "TeacherID", table = "PROPOSAL_TEACHER")
+    @Column(name = "ID")
+    //@JoinColumn(name = "TeacherID", table = "PROPOSAL_TEACHER")
     private int id;
     
     private String name;
     private String initials;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacherId", fetch = FetchType.LAZY)
+    private List<IProposal> proposals;
 
     public Teacher() {
     }
@@ -55,6 +64,14 @@ public class Teacher implements ITeacher, Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public List<IProposal> getProposalList() {
+        return proposals;
+    }
+
+    public void setProposalList(List<IProposal> proposalList) {
+        this.proposals = proposalList;
     }
 
     @Override
