@@ -47,28 +47,28 @@ public class JPATest {
         assertEquals(ts.size(), oldTs.size() + 3);
     }
 
-    @Test
-    public void test_C_InsertProposal() throws Exception {
-        // Getting all teachers, and inserting a new proposal
-        List<ITeacher> allTeachers = manager.getAllTeachers();
-        List<IProposal> oldProposals = manager.getAllProposals();
-        IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0));
-        manager.insertProposal(p1);
-        List<IProposal> proposals = manager.getAllProposals();
-        assertEquals(proposals.size(), oldProposals.size() + 1);
-    }
-
-    @Test
-    public void test_D_GetAllProposals() {
-        // dependent on test_b
-        List<IProposal> allProposals = manager.getAllProposals();
-        assertEquals(allProposals.size(), 1);
-    }
-
-    @Test
-    public void test_B_GetAllProposals() {
-        List<IProposal> allProposals = manager.getAllProposals();
-        assertThat(allProposals.size(), is(0));
-    }
+//    @Test
+//    public void test_C_InsertProposal() throws Exception {
+//        // Getting all teachers, and inserting a new proposal
+//        List<ITeacher> allTeachers = manager.getAllTeachers();
+//        List<IProposal> oldProposals = manager.getAllProposals();
+//        IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0));
+//        manager.insertProposal(p1);
+//        List<IProposal> proposals = manager.getAllProposals();
+//        assertEquals(proposals.size(), oldProposals.size() + 1);
+//    }
+//
+//    @Test
+//    public void test_D_GetAllProposals() {
+//        // dependent on test_b
+//        List<IProposal> allProposals = manager.getAllProposals();
+//        assertEquals(allProposals.size(), 1);
+//    }
+//
+//    @Test
+//    public void test_B_GetAllProposals() {
+//        List<IProposal> allProposals = manager.getAllProposals();
+//        assertThat(allProposals.size(), is(0));
+//    }
 
 }

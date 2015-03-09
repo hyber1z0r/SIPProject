@@ -9,6 +9,7 @@ import com.ohnana.interfaces.IElectiveSubject;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,13 +25,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "STUDENT_ELECTIVESUBJECT")
 public class StudentElectiveSubject implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    protected StuElePK sepk;
     @Column(name = "PRIORITY")
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Priority priority;
     @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    
+
     private Student student;
     @JoinColumn(name = "ELECTIVESUBJECT_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -38,7 +42,6 @@ public class StudentElectiveSubject implements Serializable {
 
     public StudentElectiveSubject() {
     }
-
 
     public Priority getPriority() {
         return priority;
@@ -62,6 +65,14 @@ public class StudentElectiveSubject implements Serializable {
 
     public void setElectivesubject(IElectiveSubject electiveSubject) {
         this.electiveSubject = electiveSubject;
+    }
+
+    public StuElePK getSepk() {
+        return sepk;
+    }
+
+    public void setSepk(StuElePK sepk) {
+        this.sepk = sepk;
     }
 
     @Override
@@ -94,5 +105,5 @@ public class StudentElectiveSubject implements Serializable {
     public String toString() {
         return electiveSubject.toString() + "  " + student.toString();
     }
-    
+
 }
