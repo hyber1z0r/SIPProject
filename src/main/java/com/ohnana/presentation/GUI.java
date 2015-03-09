@@ -12,11 +12,10 @@ import com.ohnana.interfaces.ITeacher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -55,19 +54,37 @@ public class GUI extends javax.swing.JFrame {
     private void initUI() {
         jListProposals.setModel(new DefaultListModel());
         jListAddedProposals.setModel(new DefaultListModel());
-        jTablePools.setModel(new DefaultTableModel(){
+        jTablePools.setModel(new DefaultTableModel() {
+            {
+                this.addColumn("");
+                this.addColumn("Pool A");
+                this.addColumn("");
+                this.addColumn("Pool B");
+//                this.addTableModelListener(new TableModelListener() {
+//                    @Override
+//                    public void tableChanged(TableModelEvent e) {
+//                        tablePoolsChanged(e);
+//                    }
+//                });
+            }
 
             Class[] classes = new Class[]{
-            String.class,Boolean.class,
-            String.class,Boolean.class
+                Boolean.class, String.class,
+                Boolean.class, String.class
             };
-            
+
             @Override
             public Class<?> getColumnClass(int columnIndex) {
-               return classes[columnIndex];
+                return classes[columnIndex];
             }
-            
+
         });
+        jTablePools.getColumnModel().getColumn(0).setPreferredWidth(15);
+        jTablePools.getColumnModel().getColumn(2).setPreferredWidth(15);
+        jTablePools.setColumnSelectionAllowed(false);
+        jTablePools.setRowSelectionAllowed(false);
+        jTablePools.setShowGrid(false);
+
         jList1dot1.setModel(new DefaultListModel());
         jList1dot2.setModel(new DefaultListModel());
         jList2dot2.setModel(new DefaultListModel());
@@ -509,7 +526,6 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTitleActionPerformed
 
     private void jButtonRemoveProposalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveProposalActionPerformed
-
         if (jListAddedProposals.getSelectedIndex() != -1) {
             modelProposals.addElement(jListAddedProposals.getSelectedValue());
             modelAddedProposals.removeElementAt(jListAddedProposals.getSelectedIndex());
@@ -602,10 +618,30 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private void fillPools(List<IElectiveSubject> es) {
-        System.out.println(es.size());
-        for (IElectiveSubject e : es) {
-            modelListPoolA.addElement(e);
-            modelListPoolB.addElement(e);
+        modelTablePools.setRowCount(es.size());
+        for (int i = 0; i < es.size(); i++) {
+            modelTablePools.setValueAt(false, i, 0); // check pool a
+            modelTablePools.setValueAt(es.get(i), i, 1); // pool a
+            modelTablePools.setValueAt(false, i, 2); // check pool b
+            modelTablePools.setValueAt(es.get(i), i, 3); // pool b
+        }
+        modelTablePools.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                tablePoolsChanged(e);
+            }
+        });
+
+    }
+
+    private void tablePoolsChanged(TableModelEvent e) {
+        // if you check in the left, you uncheck in the corrosponding right and vice versa
+        int rowChanged = e.getFirstRow();
+        int colChanged = e.getColumn();
+        boolean valueAt = (boolean) modelTablePools.getValueAt(rowChanged, colChanged);
+        if (valueAt) {
+            modelTablePools.setValueAt(false, rowChanged, colChanged == 0 ? 2 : 0);
+            // calculate students algorithm
         }
     }
 
@@ -619,12 +655,14 @@ public class GUI extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
