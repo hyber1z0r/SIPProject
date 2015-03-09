@@ -60,12 +60,6 @@ public class GUI extends javax.swing.JFrame {
                 this.addColumn("Pool A");
                 this.addColumn("");
                 this.addColumn("Pool B");
-//                this.addTableModelListener(new TableModelListener() {
-//                    @Override
-//                    public void tableChanged(TableModelEvent e) {
-//                        tablePoolsChanged(e);
-//                    }
-//                });
             }
 
             Class[] classes = new Class[]{
@@ -78,6 +72,22 @@ public class GUI extends javax.swing.JFrame {
                 return classes[columnIndex];
             }
 
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                switch(column){
+                    case 0:
+                        return true;
+                    case 1:
+                        return false;
+                    case 2:
+                        return true;
+                    case 3: 
+                        return false;
+                    default:
+                        return false;
+                }
+            }
+            
         });
         jTablePools.getColumnModel().getColumn(0).setPreferredWidth(15);
         jTablePools.getColumnModel().getColumn(2).setPreferredWidth(15);
@@ -141,6 +151,14 @@ public class GUI extends javax.swing.JFrame {
         jButtonShowSelectedSubjects = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTablePools = new javax.swing.JTable();
+        HoP1RoundSelection = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListProposals = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListAddedProposals = new javax.swing.JList();
+        jButtonAddProposal = new javax.swing.JButton();
+        jButtonRemoveProposal = new javax.swing.JButton();
+        jButtonSaveRound1 = new javax.swing.JButton();
         AddSubject = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -151,14 +169,6 @@ public class GUI extends javax.swing.JFrame {
         jButtonCommit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescription = new javax.swing.JTextArea();
-        HoP1RoundSelection = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jListProposals = new javax.swing.JList();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jListAddedProposals = new javax.swing.JList();
-        jButtonAddProposal = new javax.swing.JButton();
-        jButtonRemoveProposal = new javax.swing.JButton();
-        jButtonSaveRound1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -350,6 +360,82 @@ public class GUI extends javax.swing.JFrame {
 
         getContentPane().add(HoPFinalSelection, "card4");
 
+        HoP1RoundSelection.setPreferredSize(new java.awt.Dimension(650, 540));
+
+        jListProposals.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListProposals);
+
+        jListAddedProposals.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jListAddedProposals);
+
+        jButtonAddProposal.setText("-------->");
+        jButtonAddProposal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddProposalActionPerformed(evt);
+            }
+        });
+
+        jButtonRemoveProposal.setText("<--------");
+        jButtonRemoveProposal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveProposalActionPerformed(evt);
+            }
+        });
+
+        jButtonSaveRound1.setText("Save round");
+        jButtonSaveRound1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveRound1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout HoP1RoundSelectionLayout = new javax.swing.GroupLayout(HoP1RoundSelection);
+        HoP1RoundSelection.setLayout(HoP1RoundSelectionLayout);
+        HoP1RoundSelectionLayout.setHorizontalGroup(
+            HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
+                .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAddProposal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonRemoveProposal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(jButtonSaveRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(263, Short.MAX_VALUE))
+        );
+        HoP1RoundSelectionLayout.setVerticalGroup(
+            HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoP1RoundSelectionLayout.createSequentialGroup()
+                .addContainerGap(189, Short.MAX_VALUE)
+                .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jButtonAddProposal)
+                        .addGap(138, 138, 138)
+                        .addComponent(jButtonRemoveProposal)))
+                .addGap(31, 31, 31)
+                .addComponent(jButtonSaveRound1)
+                .addGap(23, 23, 23))
+        );
+
+        getContentPane().add(HoP1RoundSelection, "card3");
+
         AddSubject.setPreferredSize(new java.awt.Dimension(650, 540));
 
         jLabel1.setText("Title");
@@ -425,7 +511,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(64, 64, 64)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)))
                 .addGap(46, 46, 46))
         );
 
@@ -441,82 +527,6 @@ public class GUI extends javax.swing.JFrame {
         );
 
         getContentPane().add(AddSubject, "card2");
-
-        HoP1RoundSelection.setPreferredSize(new java.awt.Dimension(650, 540));
-
-        jListProposals.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jListProposals);
-
-        jListAddedProposals.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jListAddedProposals);
-
-        jButtonAddProposal.setText("-------->");
-        jButtonAddProposal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddProposalActionPerformed(evt);
-            }
-        });
-
-        jButtonRemoveProposal.setText("<--------");
-        jButtonRemoveProposal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoveProposalActionPerformed(evt);
-            }
-        });
-
-        jButtonSaveRound1.setText("Save round");
-        jButtonSaveRound1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSaveRound1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout HoP1RoundSelectionLayout = new javax.swing.GroupLayout(HoP1RoundSelection);
-        HoP1RoundSelection.setLayout(HoP1RoundSelectionLayout);
-        HoP1RoundSelectionLayout.setHorizontalGroup(
-            HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
-                .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonAddProposal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonRemoveProposal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jButtonSaveRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(263, Short.MAX_VALUE))
-        );
-        HoP1RoundSelectionLayout.setVerticalGroup(
-            HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoP1RoundSelectionLayout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jButtonAddProposal)
-                        .addGap(138, 138, 138)
-                        .addComponent(jButtonRemoveProposal)))
-                .addGap(31, 31, 31)
-                .addComponent(jButtonSaveRound1)
-                .addGap(23, 23, 23))
-        );
-
-        getContentPane().add(HoP1RoundSelection, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
