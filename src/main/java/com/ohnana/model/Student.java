@@ -7,6 +7,8 @@ package com.ohnana.model;
 
 import com.ohnana.interfaces.IStudent;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,12 +33,19 @@ public class Student implements IStudent, Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-
+    
+    // liste af første priorities
+    private List<String> firstP;
+    // liste af anden priorities
+    private List<String> secondP;
+    
     public Student() {
         
     }
     
     public Student(String name) {
+        firstP = new ArrayList();
+        secondP = new ArrayList();
         this.name = name;
     }
 
@@ -51,6 +60,24 @@ public class Student implements IStudent, Serializable{
     public String getName() {
         return name;
     }
+    
+    public void addFirstPrio(String name) {
+        firstP.add(name);
+    }
+    
+    public void addSecondPrio(String name) {
+        secondP.add(name);
+    }
+
+    public List<String> getFirstP() {
+        return firstP;
+    }
+
+    public List<String> getSecondP() {
+        return secondP;
+    }
+    
+    
 
     @Override
     public int hashCode() {

@@ -106,11 +106,5 @@ public class JPATest {
          assertThat(allStudents.size(), is(1));
     }
     
-    @Test
-    public void test_I_InsertStudent_ElectiveSubject(){
-        List<IStudent> allStudents = manager.getAllStudents();
-        
-    }
-    
     
 }
