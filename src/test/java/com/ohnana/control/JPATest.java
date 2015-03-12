@@ -1,9 +1,11 @@
 package com.ohnana.control;
 
+import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
+import com.ohnana.model.ElectiveSubject;
 import com.ohnana.model.Proposal;
 import com.ohnana.model.Student;
 import com.ohnana.model.Teacher;
@@ -49,6 +51,12 @@ public class JPATest {
         assertEquals(ts.size(), oldTs.size() + 3);
     }
 
+     @Test
+    public void test_B_GetAllProposals() {
+        List<IProposal> allProposals = manager.getAllProposals();
+        assertThat(allProposals.size(), is(0));
+    }
+    
     @Test
     public void test_C_InsertProposal() throws Exception {
         // Getting all teachers, and inserting a new proposal
@@ -66,18 +74,43 @@ public class JPATest {
         List<IProposal> allProposals = manager.getAllProposals();
         assertEquals(allProposals.size(), 1);
     }
-
+    
     @Test
-    public void test_B_GetAllProposals() {
-        List<IProposal> allProposals = manager.getAllProposals();
-        assertThat(allProposals.size(), is(0));
+    public void test_E_InsertElectiveSubjects() throws Exception
+    {
+        final List<IProposal> allProposals = manager.getAllProposals();
+        List<IElectiveSubject> es = new ArrayList() {
+                {
+                    this.add(new ElectiveSubject(allProposals.get(0)));
+                }
+        };
+        manager.insertElectiveSubjects(es);
     }
     
     @Test
-    public void testInsertStudent() throws Exception{
+    public void test_F_GetAllElectiveSubjects()
+    {
+        List<IElectiveSubject> allElectiveSubjects = manager.getAllElectiveSubjects();
+        assertThat(allElectiveSubjects.size(), is(1));
+    }
+    
+    @Test
+    public void test_G_InsertStudent() throws Exception{
         IStudent s1 = new Student ("Damjan Filipovic");
         manager.insertStudent(s1);
+    }
+    
+    @Test
+    public void test_H_GetAllStudents(){
+        List<IStudent> allStudents = manager.getAllStudents();
+         assertThat(allStudents.size(), is(1));
+    }
+    
+    @Test
+    public void test_I_InsertStudent_ElectiveSubject(){
+        List<IStudent> allStudents = manager.getAllStudents();
         
     }
-
+    
+    
 }
