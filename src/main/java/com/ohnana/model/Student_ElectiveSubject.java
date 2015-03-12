@@ -7,6 +7,8 @@ package com.ohnana.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,12 +25,13 @@ public class Student_ElectiveSubject implements Serializable {
     private int id;
     private int studentID;
     private int electiveSubjectID;
-    private Priority prior;
+    @Enumerated (EnumType.STRING)
+    private Priority prio;
 
-    public Student_ElectiveSubject(int studentID, int electiveSubjectID, Priority prior) {
+    public Student_ElectiveSubject(int studentID, int electiveSubjectID, Priority prio) {
         this.studentID = studentID;
         this.electiveSubjectID = electiveSubjectID;
-        this.prior = prior;
+        this.prio = prio;
     }
     
     public Student_ElectiveSubject(){
@@ -51,12 +54,12 @@ public class Student_ElectiveSubject implements Serializable {
         this.electiveSubjectID = electiveSubjectID;
     }
 
-    public Priority getPrior() {
-        return prior;
+    public Priority getPrio() {
+        return prio;
     }
 
-    public void setPrior(Priority prior) {
-        this.prior = prior;
+    public void setPrior(Priority prio) {
+        this.prio = prio;
     }
 
     public int getId() {
