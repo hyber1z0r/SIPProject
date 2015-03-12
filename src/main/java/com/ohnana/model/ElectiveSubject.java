@@ -3,14 +3,10 @@ package com.ohnana.model;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -26,14 +22,9 @@ import javax.persistence.Table;
 })
 public class ElectiveSubject implements IElectiveSubject, Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private int id;
-    
-    @JoinColumn(name = "PROPOSAL_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private IProposal proposal;
 
     public ElectiveSubject() {
@@ -81,5 +72,6 @@ public class ElectiveSubject implements IElectiveSubject, Serializable {
     public String toString() {
         return proposal.toString();
     }
-
+    
+    
 }
