@@ -5,6 +5,7 @@
  */
 package com.ohnana.model;
 
+import com.ohnana.interfaces.IStudent;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Student.getAll", query = "SELECT s FROM Student s")
 })
-public class Student {
+public class Student implements IStudent{
      private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

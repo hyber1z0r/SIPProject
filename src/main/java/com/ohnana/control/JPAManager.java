@@ -3,6 +3,7 @@ package com.ohnana.control;
 import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -116,6 +117,23 @@ public class JPAManager implements IJPAManager {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void insertStudent(IStudent s1) throws Exception {
+         EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.persist(s1);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            em.getTransaction().rollback();
+            throw new Exception("Database error: insert student. Did rollback");
+
         } finally {
             em.close();
         }

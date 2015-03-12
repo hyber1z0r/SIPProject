@@ -2,8 +2,10 @@ package com.ohnana.control;
 
 import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Proposal;
+import com.ohnana.model.Student;
 import com.ohnana.model.Teacher;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +71,13 @@ public class JPATest {
     public void test_B_GetAllProposals() {
         List<IProposal> allProposals = manager.getAllProposals();
         assertThat(allProposals.size(), is(0));
+    }
+    
+    @Test
+    public void testInsertStudent() throws Exception{
+        IStudent s1 = new Student ("Damjan Filipovic");
+        manager.insertStudent(s1);
+        
     }
 
 }

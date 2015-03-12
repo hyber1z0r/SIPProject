@@ -3,7 +3,9 @@ package com.ohnana.mocks;
 import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
+import com.ohnana.model.Student;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +18,13 @@ public class JPAMock implements IJPAManager {
     private final List<IElectiveSubject> electivesubjects;
     private final List<IProposal> proposals;
     private final List<ITeacher> teachers;
+    private final List<IStudent> students;
 
     public JPAMock() {
         electivesubjects = new ArrayList();
         proposals = new ArrayList();
         teachers = new ArrayList();
+        students = new ArrayList();
     }
 
     @Override
@@ -53,5 +57,10 @@ public class JPAMock implements IJPAManager {
     @Override
     public List<IElectiveSubject> getAllElectiveSubjects() {
         return electivesubjects;
+    }
+
+    @Override
+    public void insertStudent(IStudent s1) throws Exception {
+       students.add(s1);
     }
 }
