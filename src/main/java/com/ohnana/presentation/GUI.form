@@ -40,7 +40,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel3" min="-2" pref="660" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="83" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -120,7 +120,7 @@
                           </Group>
                           <Component id="jScrollPane10" alignment="0" min="-2" pref="319" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="119" pref="169" max="32767" attributes="0"/>
+                      <EmptySpace min="119" pref="163" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -159,7 +159,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -8,7 +8,10 @@ package com.ohnana.presentation;
 import com.ohnana.control.Facade;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
+import com.ohnana.model.ElectiveSubject;
+import com.ohnana.model.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -27,6 +30,8 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    
+    //FIELDS 
     private final Facade facade;
     private String user = "PELO";
     private DefaultListModel modelAddedProposals;
@@ -42,6 +47,7 @@ public class GUI extends javax.swing.JFrame {
     private DefaultListModel modelListPoolA;
     private DefaultListModel modelListPoolB;
 
+    // CONSTRUCTOR
     public GUI() {
         initComponents();
         initUI();
@@ -531,6 +537,34 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //METHODS 
+    public IStudent sortStudent(Student student, String blokA, String blokB) {
+        
+        boolean firstPrioA = false;
+        boolean firstPrioB = false;
+        boolean secondPrioA = false;
+        boolean secondPrioB = false;
+        
+        List<String> studentFirstPrio = student.getFirstP();
+        List<String> studentSecondPrio = student.getSecondP();
+        
+        if(blokA.equals(studentFirstPrio.get(0)) && blokB.equals(studentFirstPrio.get(1))) {
+            // SCENARIO: 1,1
+            
+            return null;
+        }
+        if(blokA.equals(studentFirstPrio.get(0)) || blokB.equals(studentFirstPrio.get(1))) {
+            // SCENARIO: 1,2
+            
+            return null;
+        }
+        
+        return null;
+    }
+    
+    
+    
+    
     private void jTextFieldTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTitleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTitleActionPerformed
