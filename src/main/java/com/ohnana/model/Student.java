@@ -9,11 +9,12 @@ import com.ohnana.interfaces.IStudent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,25 +28,26 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Student.getAll", query = "SELECT s FROM Student s")
 })
-public class Student implements IStudent, Serializable{
-     private static final long serialVersionUID = 1L;
+public class Student implements IStudent, Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    
+
     // liste af første priorities
-    private List<String> firstP;
+    private List<String> firstPrios;
     // liste af anden priorities
-    private List<String> secondP;
-    
+    private List<String> secondPrios;
+
     public Student() {
-        
+
     }
-    
+
     public Student(String name) {
-        firstP = new ArrayList();
-        secondP = new ArrayList();
+        firstPrios = new ArrayList();
+        secondPrios = new ArrayList();
         this.name = name;
     }
 
@@ -57,27 +59,30 @@ public class Student implements IStudent, Serializable{
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
-    
+
+    @Override
     public void addFirstPrio(String name) {
-        firstP.add(name);
+        firstPrios.add(name);
     }
-    
+
+    @Override
     public void addSecondPrio(String name) {
-        secondP.add(name);
+        secondPrios.add(name);
     }
 
+    @Override
     public List<String> getFirstP() {
-        return firstP;
+        return firstPrios;
     }
 
+    @Override
     public List<String> getSecondP() {
-        return secondP;
+        return secondPrios;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -102,10 +107,4 @@ public class Student implements IStudent, Serializable{
     public String toString() {
         return name;
     }
-    
-    
-    
-    
-    
-    
 }

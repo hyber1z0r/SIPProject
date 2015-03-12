@@ -2,6 +2,7 @@ package com.ohnana.control;
 
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.ElectiveSubject;
 import com.ohnana.model.Proposal;
@@ -59,6 +60,10 @@ public class Facade {
 
     public List<IElectiveSubject> getAllElectiveSubject() {
         return manager.getAllElectiveSubjects();
+    }
+
+    public List<IStudent> getAllStudents() {
+        return manager.getAllStudents();
     }
 
 }

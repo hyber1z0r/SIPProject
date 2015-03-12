@@ -30,7 +30,6 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    
     //FIELDS 
     private final Facade facade;
     private String user = "PELO";
@@ -44,8 +43,7 @@ public class GUI extends javax.swing.JFrame {
     private DefaultListModel modelList2dot0;
     private DefaultListModel modelList0dot0;
     private DefaultListModel modelListSelectedSubjects;
-    private DefaultListModel modelListPoolA;
-    private DefaultListModel modelListPoolB;
+    private final List<IStudent> students;
 
     // CONSTRUCTOR
     public GUI() {
@@ -55,6 +53,8 @@ public class GUI extends javax.swing.JFrame {
         fillTeachers(facade.getAllTeachers());
         fillList1Round(facade.getAllProposals());
         fillPools(facade.getAllElectiveSubject());
+        students = facade.getAllStudents();
+        analyzeStudents();
     }
 
     private void initUI() {
@@ -80,20 +80,20 @@ public class GUI extends javax.swing.JFrame {
 
             @Override
             public boolean isCellEditable(int row, int column) {
-                switch(column){
+                switch (column) {
                     case 0:
                         return true;
                     case 1:
                         return false;
                     case 2:
                         return true;
-                    case 3: 
+                    case 3:
                         return false;
                     default:
                         return false;
                 }
             }
-            
+
         });
         jTablePools.getColumnModel().getColumn(0).setPreferredWidth(15);
         jTablePools.getColumnModel().getColumn(2).setPreferredWidth(15);
@@ -537,34 +537,31 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //METHODS 
-    public IStudent sortStudent(Student student, String blokA, String blokB) {
-        
-        boolean firstPrioA = false;
-        boolean firstPrioB = false;
-        boolean secondPrioA = false;
-        boolean secondPrioB = false;
-        
-        List<String> studentFirstPrio = student.getFirstP();
-        List<String> studentSecondPrio = student.getSecondP();
-        
-        if(blokA.equals(studentFirstPrio.get(0)) && blokB.equals(studentFirstPrio.get(1))) {
-            // SCENARIO: 1,1
-            
-            return null;
-        }
-        if(blokA.equals(studentFirstPrio.get(0)) || blokB.equals(studentFirstPrio.get(1))) {
-            // SCENARIO: 1,2
-            
-            return null;
-        }
-        
-        return null;
-    }
-    
-    
-    
-    
+//    //METHODS 
+//    public IStudent sortStudent(Student student, String blokA, String blokB) {
+//        
+//        boolean firstPrioA = false;
+//        boolean firstPrioB = false;
+//        boolean secondPrioA = false;
+//        boolean secondPrioB = false;
+//        
+//        List<String> studentFirstPrio = student.getFirstP();
+//        List<String> studentSecondPrio = student.getSecondP();
+//        
+//        if(blokA.equals(studentFirstPrio.get(0)) && blokB.equals(studentFirstPrio.get(1))) {
+//            // SCENARIO: 1,1
+//            
+//            return null;
+//        }
+//        if(blokA.equals(studentFirstPrio.get(0)) || blokB.equals(studentFirstPrio.get(1))) {
+//            // SCENARIO: 1,2
+//            
+//            return null;
+//        }
+//        
+//        return null;
+//    }
+
     private void jTextFieldTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTitleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTitleActionPerformed
@@ -643,8 +640,6 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private void clearAllListsInFinalSelection() {
-        modelListPoolA.removeAllElements();
-        modelListPoolB.removeAllElements();
         modelList1dot1.removeAllElements();
         modelList1dot2.removeAllElements();
         modelList2dot2.removeAllElements();
@@ -686,6 +681,68 @@ public class GUI extends javax.swing.JFrame {
         if (valueAt) {
             modelTablePools.setValueAt(false, rowChanged, colChanged == 0 ? 2 : 0);
             // calculate students algorithm
+            analyzeStudents();
+        }
+    }
+
+    private void analyzeStudents() {
+        clearAllListsInFinalSelection();
+        List<String> selections = new ArrayList(); // list for subjects checked off
+        // loop through the table
+        for (int i = 0; i < modelTablePools.getRowCount(); i++) {
+            // if its checked off, add the text next to it
+            if ((boolean) modelTablePools.getValueAt(i, 0) == true) {
+                selections.add(modelTablePools.getValueAt(i, 1).toString());
+            }
+            if ((boolean) modelTablePools.getValueAt(i, 2) == true) {
+                selections.add(modelTablePools.getValueAt(i, 3).toString());
+            }
+        }
+        // loop through students, checking their priorities against the selections in the table
+        for (IStudent student : students) {
+            String firstA = student.getFirstP().get(0);
+            String firstB = student.getFirstP().get(1);
+            String secondA = student.getSecondP().get(0);
+            String secondB = student.getSecondP().get(1);
+            boolean isFirstA = false;
+            boolean isFirstB = false;
+            boolean isSecondA = false;
+            boolean isSecondB = false;
+            for (String s : selections) {
+                if (firstA.equals(s)) {
+                    isFirstA = true;
+                }
+                if (firstB.equals(s)) {
+                    isFirstB = true;
+                }
+                if (secondA.equals(s)) {
+                    isSecondA = true;
+                }
+                if (secondB.equals(s)) {
+                    isSecondB = true;
+                }
+            }
+
+            // adding them to the right list if they match
+            if (isFirstA && isFirstB) {
+                //Scenario 1,1
+                modelList1dot1.addElement(student);
+            } else if (isFirstA && isSecondA || isFirstB && isSecondA || isFirstA && isSecondB || isFirstB && isSecondB) {
+                //Scenario 1,2
+                modelList1dot2.addElement(student);
+            } else if (isSecondA && isSecondB) {
+                //Scenario 2,2
+                modelList2dot2.addElement(student);
+            } else if (isFirstA && (!isSecondA && !isSecondB) || isFirstB && (!isSecondA && !isSecondB)) {
+                //Scenario 1,0
+                modelList1dot0.addElement(student);
+            } else if (isSecondA && (!isFirstA && !isFirstB) || isSecondB && (!isFirstA && !isFirstB)) {
+                //Scenario 2,0
+                modelList2dot0.addElement(student);
+            } else if (!isFirstA && !isFirstB && !isSecondA && !isSecondB) {
+                //Scenario 0,0
+                modelList0dot0.addElement(student);
+            }
         }
     }
 

@@ -5,10 +5,21 @@
  */
 package com.ohnana.interfaces;
 
+import java.util.List;
+
 /**
  *
  * @author Filipovic
  */
 public interface IStudent {
-   String getName(); 
+
+    String getName();
+
+    List<String> getFirstP();
+
+    List<String> getSecondP();
+    
+    void addFirstPrio(String name);
+    
+    void addSecondPrio(String name);
 }
