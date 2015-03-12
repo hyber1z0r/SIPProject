@@ -123,11 +123,11 @@ public class JPAManager implements IJPAManager {
     }
 
     @Override
-    public void insertStudent(IStudent s1) throws Exception {
-         EntityManager em = emf.createEntityManager();
+    public void insertStudent(IStudent student) throws Exception {
+        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
-            em.persist(s1);
+            em.persist(student);
             em.getTransaction().commit();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
@@ -138,9 +138,10 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
-    
-    public List<IStudent> getAllStudents(){
-         EntityManager em = emf.createEntityManager();
+
+    @Override
+    public List<IStudent> getAllStudents() {
+        EntityManager em = emf.createEntityManager();
         try {
             Query query = em.createNamedQuery("Student.getAll");
             List<IStudent> s = query.getResultList();
@@ -152,5 +153,4 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
-
 }

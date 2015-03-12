@@ -5,7 +5,6 @@ import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
-import com.ohnana.model.Student;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +59,8 @@ public class JPAMock implements IJPAManager {
     }
 
     @Override
-    public void insertStudent(IStudent s1) throws Exception {
-       students.add(s1);
+    public void insertStudent(IStudent student) throws Exception {
+        students.add(student);
     }
 
     @Override

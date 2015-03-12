@@ -101,8 +101,8 @@ public class JPATest {
     @Test
     public void testGetAllStudents() throws Exception {
         List<IStudent> oldStudents = manager.getAllStudents();
-        IStudent s1 = new Student("Damjan Filipovic");
-        manager.insertStudent(s1);
+        IStudent student = new Student("Damjan Filipovic");
+        manager.insertStudent(student);
         List<IStudent> allStudents = manager.getAllStudents();
         assertThat(allStudents.size(), is(oldStudents.size() + 1));
     }

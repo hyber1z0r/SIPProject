@@ -3,13 +3,16 @@ package com.ohnana.control;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.mocks.JPAMock;
 import com.ohnana.model.ElectiveSubject;
 import com.ohnana.model.Proposal;
+import com.ohnana.model.Student;
 import com.ohnana.model.Teacher;
 import java.util.ArrayList;
 import java.util.List;
+import static org.hamcrest.CoreMatchers.is;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Test;
@@ -41,7 +44,6 @@ public class JPAMockTest {
     @Test
     public void testGetAllProposal() throws Exception {
         ITeacher teacher = new Teacher();
-
         IProposal ip1 = new Proposal("Math", "Learn to plus and minus", teacher);
         IProposal ip2 = new Proposal("Danish", "Learn the danish food", teacher);
         IProposal ip3 = new Proposal("IT", "Basics in Word and PowerPoint", teacher);
@@ -97,5 +99,22 @@ public class JPAMockTest {
         manager.insertElectiveSubjects(electives);
         List<IElectiveSubject> allElectiveSubjects = manager.getAllElectiveSubjects();
         assertEquals(allElectiveSubjects.size(), 3);
+    }
+
+    @Test
+    public void testInsertStudent() throws Exception {
+        IStudent student = new Student("Damjan Filipovic");
+        manager.insertStudent(student);
+    }
+
+    @Test
+    public void testGetAllStudents() throws Exception {
+        List<IStudent> oldStudents = manager.getAllStudents();
+        int oldSize = oldStudents.size();
+        IStudent student = new Student("Damjan Filipovic");
+        manager.insertStudent(student);
+        List<IStudent> allStudents = manager.getAllStudents();
+
+        assertThat(allStudents.size(), is(oldSize + 1));
     }
 }
