@@ -6,6 +6,7 @@
 package com.ohnana.model;
 
 import com.ohnana.interfaces.IStudent;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Student.getAll", query = "SELECT s FROM Student s")
 })
-public class Student implements IStudent{
+public class Student implements IStudent, Serializable{
      private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,10 +68,7 @@ public class Student implements IStudent{
             return false;
         }
         final Student other = (Student) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
 
     @Override

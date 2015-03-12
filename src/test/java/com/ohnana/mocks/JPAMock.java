@@ -63,4 +63,9 @@ public class JPAMock implements IJPAManager {
     public void insertStudent(IStudent s1) throws Exception {
        students.add(s1);
     }
+
+    @Override
+    public List<IStudent> getAllStudents() {
+        return students;
+    }
 }

@@ -21,4 +21,6 @@ public interface IJPAManager {
     List<IElectiveSubject> getAllElectiveSubjects();
 
     void insertStudent(IStudent s1) throws Exception;
+    
+    List<IStudent> getAllStudents();
 }

@@ -138,5 +138,19 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
+    
+    public List<IStudent> getAllStudents(){
+         EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Student.getAll");
+            List<IStudent> s = query.getResultList();
+            return s;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
 }
