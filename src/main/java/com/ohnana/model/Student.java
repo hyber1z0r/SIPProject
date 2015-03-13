@@ -9,6 +9,7 @@ import com.ohnana.interfaces.IStudent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,8 +38,10 @@ public class Student implements IStudent, Serializable {
     private String name;
 
     // liste af første priorities
+    @Column(name = "FIRSTPRIORITIES")
     private List<String> firstPrios;
     // liste af anden priorities
+    @Column(name = "SECONDPRIORITIES")
     private List<String> secondPrios;
 
     public Student() {
