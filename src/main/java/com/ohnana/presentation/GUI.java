@@ -15,6 +15,7 @@ import com.ohnana.model.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
@@ -44,6 +45,11 @@ public class GUI extends javax.swing.JFrame {
     private DefaultListModel modelList0dot0;
     private DefaultListModel modelListSelectedSubjects;
     private final List<IStudent> students;
+    private DefaultComboBoxModel firstPrior1;
+    private DefaultComboBoxModel firstPrior2;
+    private DefaultComboBoxModel secondPrior1;
+    private DefaultComboBoxModel secondPrior2;
+    
 
     // CONSTRUCTOR
     public GUI() {
@@ -107,6 +113,10 @@ public class GUI extends javax.swing.JFrame {
         jList1dot0.setModel(new DefaultListModel());
         jList2dot0.setModel(new DefaultListModel());
         jList0dot0.setModel(new DefaultListModel());
+        jComboBoxFirstPrior1.setModel(new DefaultComboBoxModel());
+        jComboBoxFirstPrior2.setModel(new DefaultComboBoxModel());
+        jComboBoxSecondPrior1.setModel(new DefaultComboBoxModel());
+        jComboBoxSecondPrior2.setModel(new DefaultComboBoxModel());
         jListShowSelectedSubjects.setModel(new DefaultListModel());
         modelAddedProposals = (DefaultListModel) jListAddedProposals.getModel();
         modelProposals = (DefaultListModel) jListProposals.getModel();
@@ -118,6 +128,10 @@ public class GUI extends javax.swing.JFrame {
         modelList2dot0 = (DefaultListModel) jList2dot0.getModel();
         modelList0dot0 = (DefaultListModel) jList0dot0.getModel();
         modelListSelectedSubjects = (DefaultListModel) jListShowSelectedSubjects.getModel();
+        firstPrior1 = (DefaultComboBoxModel) jComboBoxFirstPrior1.getModel();
+        firstPrior2 = (DefaultComboBoxModel) jComboBoxFirstPrior2.getModel();
+        secondPrior1 = (DefaultComboBoxModel) jComboBoxSecondPrior1.getModel();
+        secondPrior2 = (DefaultComboBoxModel) jComboBoxSecondPrior2.getModel();
     }
 
     /**
@@ -129,6 +143,14 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        StudentsSelectFinal = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jComboBoxFirstPrior1 = new javax.swing.JComboBox();
+        jComboBoxFirstPrior2 = new javax.swing.JComboBox();
+        jComboBoxSecondPrior2 = new javax.swing.JComboBox();
+        jComboBoxSecondPrior1 = new javax.swing.JComboBox();
+        jButtonSaveSelectFinal = new javax.swing.JButton();
         HoPFinalSelection = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -178,6 +200,75 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel12.setText("First priorities");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel13.setText("Second priorities");
+
+        jComboBoxFirstPrior1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFirstPrior1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFirstPrior1ActionPerformed(evt);
+            }
+        });
+
+        jComboBoxFirstPrior2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxSecondPrior2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxSecondPrior1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButtonSaveSelectFinal.setText("Save");
+
+        javax.swing.GroupLayout StudentsSelectFinalLayout = new javax.swing.GroupLayout(StudentsSelectFinal);
+        StudentsSelectFinal.setLayout(StudentsSelectFinalLayout);
+        StudentsSelectFinalLayout.setHorizontalGroup(
+            StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StudentsSelectFinalLayout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addGroup(StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxFirstPrior1, 0, 100, Short.MAX_VALUE)
+                    .addComponent(jComboBoxSecondPrior1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(85, 85, 85)
+                .addGroup(StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBoxSecondPrior2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxFirstPrior2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StudentsSelectFinalLayout.createSequentialGroup()
+                .addContainerGap(259, Short.MAX_VALUE)
+                .addGroup(StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StudentsSelectFinalLayout.createSequentialGroup()
+                        .addGroup(StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel12))
+                        .addGap(309, 309, 309))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StudentsSelectFinalLayout.createSequentialGroup()
+                        .addComponent(jButtonSaveSelectFinal)
+                        .addGap(93, 93, 93))))
+        );
+        StudentsSelectFinalLayout.setVerticalGroup(
+            StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StudentsSelectFinalLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel12)
+                .addGap(26, 26, 26)
+                .addGroup(StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxFirstPrior1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxFirstPrior2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(140, 140, 140)
+                .addComponent(jLabel13)
+                .addGap(51, 51, 51)
+                .addGroup(StudentsSelectFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxSecondPrior1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSecondPrior2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jButtonSaveSelectFinal)
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(StudentsSelectFinal, "card5");
 
         HoPFinalSelection.setPreferredSize(new java.awt.Dimension(650, 540));
 
@@ -357,7 +448,7 @@ public class GUI extends javax.swing.JFrame {
             HoPFinalSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HoPFinalSelectionLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 83, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         HoPFinalSelectionLayout.setVerticalGroup(
             HoPFinalSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -631,6 +722,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSaveRound1ActionPerformed
 
+    private void jComboBoxFirstPrior1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFirstPrior1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxFirstPrior1ActionPerformed
+
     private void fillTeachers(List<ITeacher> teachers) {
         jComboBoxFillTeacher.removeAllItems();
         jComboBoxFillTeacher.addItem("Select teacher");
@@ -787,16 +882,24 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel AddSubject;
     private javax.swing.JPanel HoP1RoundSelection;
     private javax.swing.JPanel HoPFinalSelection;
+    private javax.swing.JPanel StudentsSelectFinal;
     private javax.swing.JButton jButtonAddProposal;
     private javax.swing.JButton jButtonCommit;
     private javax.swing.JButton jButtonRemoveProposal;
     private javax.swing.JButton jButtonSave;
     private javax.swing.JButton jButtonSaveRound1;
+    private javax.swing.JButton jButtonSaveSelectFinal;
     private javax.swing.JButton jButtonShowSelectedSubjects;
     private javax.swing.JComboBox jComboBoxFillTeacher;
+    private javax.swing.JComboBox jComboBoxFirstPrior1;
+    private javax.swing.JComboBox jComboBoxFirstPrior2;
+    private javax.swing.JComboBox jComboBoxSecondPrior1;
+    private javax.swing.JComboBox jComboBoxSecondPrior2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
