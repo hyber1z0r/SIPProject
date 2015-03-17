@@ -1,60 +1,59 @@
-
 package com.ohnana.presentation;
 
 import com.ohnana.control.Facade;
 import com.ohnana.interfaces.IElectiveSubject;
-import java.util.ArrayList;
+import com.ohnana.interfaces.IStudent;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Anders Kaae Pedersen
  */
-
 public class studentGUI extends javax.swing.JFrame {
 
     //FIELDS 
     private final Facade facade;
-    private DefaultListModel offeredSubjectsList;
-    private DefaultListModel firstprior;
-    private DefaultListModel secondprior;
-   
-    
+    private DefaultListModel modelOfferedSubjectsList;
+    private DefaultListModel modelFirstprior;
+    private DefaultListModel modelSecondprior;
+    private DefaultComboBoxModel modelStudents;
+
 // CONSTRUCTOR 
     public studentGUI() {
         initComponents();
         facade = Facade.getFacade();
         initUI();
-        
-        fillSubjects();
+        fillSubjects(facade.getAllElectiveSubject());
+        fillStudents(facade.getAllStudents());
     }
-    
+
     //METHODS 
     private void initUI() {
-        
         jListOfferedSubjects.setModel(new DefaultListModel());
-        offeredSubjectsList = (DefaultListModel) jListOfferedSubjects.getModel();
+        modelOfferedSubjectsList = (DefaultListModel) jListOfferedSubjects.getModel();
         jListFirstprior.setModel(new DefaultListModel());
-        firstprior = (DefaultListModel) jListFirstprior.getModel();
+        modelFirstprior = (DefaultListModel) jListFirstprior.getModel();
         jListSecondPrior.setModel(new DefaultListModel());
-        secondprior = (DefaultListModel) jListSecondPrior.getModel();
-        
+        modelSecondprior = (DefaultListModel) jListSecondPrior.getModel();
+        jComboBoxStudents.setModel(new DefaultComboBoxModel());
+        modelStudents = (DefaultComboBoxModel) jComboBoxStudents.getModel();
     }
+
     // fill the list of offered subjects
-    public void fillSubjects() {
-        List<IElectiveSubject> offeredSubjects = new ArrayList<>();
-        offeredSubjects = facade.getAllElectiveSubject();
-        
-        for (IElectiveSubject iElectiveSubject : offeredSubjects) {
-            
-            offeredSubjectsList.addElement(iElectiveSubject);
-            
+    private void fillSubjects(List<IElectiveSubject> subjects) {
+        for (IElectiveSubject iElectiveSubject : subjects) {
+            modelOfferedSubjectsList.addElement(iElectiveSubject);
         }
     }
 
-    
-    
+    private void fillStudents(List<IStudent> students) {
+        for (IStudent student : students) {
+            modelStudents.addElement(student);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,6 +78,7 @@ public class studentGUI extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jComboBoxStudents = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -117,7 +117,7 @@ public class studentGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabelinfo.setText("Select your elective subjects");
+        jLabelinfo.setText("Select your name and subjects");
 
         jButton5.setText("Submit");
 
@@ -126,6 +126,8 @@ public class studentGUI extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel13.setText("Second priorities");
+
+        jComboBoxStudents.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,7 +138,10 @@ public class studentGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(212, 212, 212)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelinfo)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelinfo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(209, 209, 209)
@@ -168,8 +173,10 @@ public class studentGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabelinfo)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelinfo)
+                    .addComponent(jComboBoxStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -180,7 +187,7 @@ public class studentGUI extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jButton3)
                             .addComponent(jButton4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13))
@@ -200,57 +207,52 @@ public class studentGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
-        if(firstprior.size() == 2) {
+
+        if (modelFirstprior.size() == 2) {
             jLabelinfo.setText("You have already selected too first priorties.");
+        } else {
+            Object selection = jListOfferedSubjects.getSelectedValue();
+            if (selection == null) {
+                jLabelinfo.setText("Please select a subject.");
+            }
+            modelOfferedSubjectsList.removeElement(selection);
+            modelFirstprior.addElement(selection);
         }
-        else {
-        Object selection =jListOfferedSubjects.getSelectedValue();
-        if(selection == null) {
-            jLabelinfo.setText("Please select a subject.");
-        } 
-        offeredSubjectsList.removeElement(selection);
-        firstprior.addElement(selection);
-        }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Object selection = jListFirstprior.getSelectedValue();
-        if(selection == null) {
+        if (selection == null) {
             jLabelinfo.setText("Please select a subject from first prior");
-        }
-        else {
-        firstprior.removeElement(selection);
-        offeredSubjectsList.addElement(selection);
+        } else {
+            modelFirstprior.removeElement(selection);
+            modelOfferedSubjectsList.addElement(selection);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(secondprior.size() == 2) {
+        if (modelSecondprior.size() == 2) {
             jLabelinfo.setText("You have already selected too first priorties.");
+        } else {
+            Object selection = jListOfferedSubjects.getSelectedValue();
+            if (selection == null) {
+                jLabelinfo.setText("Please select a subject.");
+            }
+            modelOfferedSubjectsList.removeElement(selection);
+            modelSecondprior.addElement(selection);
         }
-        else {
-        Object selection =jListOfferedSubjects.getSelectedValue();
-        if(selection == null) {
-            jLabelinfo.setText("Please select a subject.");
-        } 
-        offeredSubjectsList.removeElement(selection);
-        secondprior.addElement(selection);
-        }        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        
         Object selection = jListSecondPrior.getSelectedValue();
-        if(selection == null) {
+        if (selection == null) {
             jLabelinfo.setText("Please select a subject.");
-        } 
-        offeredSubjectsList.addElement(selection);
-        secondprior.removeElement(selection);
-                        
+        }
+        modelOfferedSubjectsList.addElement(selection);
+        modelSecondprior.removeElement(selection);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -263,12 +265,14 @@ public class studentGUI extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(studentGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -294,6 +298,7 @@ public class studentGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jComboBoxStudents;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabelinfo;
