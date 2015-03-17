@@ -10,12 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -39,21 +37,20 @@ public class Student implements IStudent, Serializable {
 
     // liste af første priorities
     @Column(name = "FIRSTPRIORITIES")
-    private List<String> firstPrios;
+    private List<String> firstPrios = new ArrayList();
+
     // liste af anden priorities
     @Column(name = "SECONDPRIORITIES")
-    private List<String> secondPrios;
+    private List<String> secondPrios = new ArrayList();
 
     public Student() {
-
     }
 
     public Student(String name) {
-        firstPrios = new ArrayList();
-        secondPrios = new ArrayList();
         this.name = name;
     }
 
+    @Override
     public int getId() {
         return id;
     }
@@ -69,11 +66,17 @@ public class Student implements IStudent, Serializable {
 
     @Override
     public void addFirstPrio(String name) {
+        if (firstPrios == null) {
+            firstPrios = new ArrayList();
+        }
         firstPrios.add(name);
     }
 
     @Override
     public void addSecondPrio(String name) {
+        if (secondPrios == null) {
+            secondPrios = new ArrayList();
+        }
         secondPrios.add(name);
     }
 

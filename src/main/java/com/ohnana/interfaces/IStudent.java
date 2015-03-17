@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface IStudent {
 
+    int getId();
+    
     String getName();
 
     List<String> getFirstP();

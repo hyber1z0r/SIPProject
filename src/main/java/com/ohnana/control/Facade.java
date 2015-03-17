@@ -15,40 +15,40 @@ import javax.persistence.Persistence;
  * @author jakobgaardandersen
  */
 public class Facade {
-
+    
     private static Facade instance;
     private final JPAManager manager;
-
+    
     private Facade() {
         manager = new JPAManager(Persistence.createEntityManagerFactory("com.ohnana_SIPProject"));
     }
-
+    
     public static Facade getFacade() {
         if (instance == null) {
             instance = new Facade();
         }
         return instance;
     }
-
+    
     public void insertProposal(String title, String description, ITeacher teacher, String name) throws Exception {
         // check args
         IProposal proposal = new Proposal(title, description, teacher, name);
         manager.insertProposal(proposal);
     }
-
+    
     public void insertTeacher(ITeacher teacher) throws Exception {
         // check args
         manager.insertTeacher(teacher);
     }
-
+    
     public List<IProposal> getAllProposals() {
         return manager.getAllProposals();
     }
-
+    
     public List<ITeacher> getAllTeachers() {
         return manager.getAllTeachers();
     }
-
+    
     public void insertElectiveSubjects(List<IProposal> proposals) throws Exception {
         // check args
         List<IElectiveSubject> es = new ArrayList();
@@ -57,13 +57,17 @@ public class Facade {
         }
         manager.insertElectiveSubjects(es);
     }
-
+    
     public List<IElectiveSubject> getAllElectiveSubject() {
         return manager.getAllElectiveSubjects();
     }
-
+    
     public List<IStudent> getAllStudents() {
         return manager.getAllStudents();
     }
-
+    
+    public void updateStudentSubject(int id, String... subjects) throws Exception {
+        manager.updateStudentSubject(id, subjects);
+    }
+    
 }

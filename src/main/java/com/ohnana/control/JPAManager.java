@@ -5,6 +5,7 @@ import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
 import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
+import com.ohnana.model.Student;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -153,12 +154,15 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
-    
+
     @Override
-    public void updateStudentSubject(int id, String... subjects) throws Exception{
+    public void updateStudentSubject(int id, String... subjects) throws Exception {
         EntityManager em = emf.createEntityManager();
-        IStudent student = em.find(IStudent.class, id);
-         em.getTransaction().begin();
+        IStudent student = em.find(Student.class, id);
+        if (student == null) {
+            throw new Exception("Student not found with id: " + id);
+        }
+        em.getTransaction().begin();
         try {
             student.addFirstPrio(subjects[0]);
             student.addFirstPrio(subjects[1]);
@@ -167,6 +171,7 @@ public class JPAManager implements IJPAManager {
             em.getTransaction().commit();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
+            ex.printStackTrace();
             em.getTransaction().rollback();
             throw new Exception("Database error: update student subjects. Did rollback");
         } finally {

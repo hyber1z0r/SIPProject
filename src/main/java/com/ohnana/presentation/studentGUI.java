@@ -4,6 +4,7 @@ import com.ohnana.control.Facade;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
+import com.ohnana.model.Student;
 import java.util.List;
 import java.util.Stack;
 import javax.swing.DefaultComboBoxModel;
@@ -427,7 +428,6 @@ public class studentGUI extends javax.swing.JFrame {
         } else { /* Arg checking end */
 
             // no missing information
-
             int result = JOptionPane.showConfirmDialog(null, "Are you sure", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION) {
                 try {
@@ -443,6 +443,39 @@ public class studentGUI extends javax.swing.JFrame {
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
         // save students priorities!
+        Stack<String> errorStack = new Stack();
+        if (modelFirstprior.isEmpty()) {
+            errorStack.push("no 1. priorities");
+        } 
+        if(modelFirstprior.size() == 1) {
+            errorStack.push("only one first priority");
+        }
+        if(modelSecondprior.isEmpty()){
+            errorStack.push("no 2. priorities");
+        }
+        if(modelSecondprior.size() == 1) {
+            errorStack.push("only one second priority");
+        }
+        if (errorStack.size() > 0) {
+            String res = "Prioties rejected: \n";
+            for (String s : errorStack) {
+                res += s + "\n";
+            }
+            JOptionPane.showMessageDialog(null, res, "Alert!", JOptionPane.ERROR_MESSAGE);
+        }else {
+            // no missing information
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                try {
+                    // put it into the database here
+                    IStudent student = (Student) modelStudents.getSelectedItem();
+                    facade.updateStudentSubject(student.getId(), modelFirstprior.get(0).toString(), modelFirstprior.get(1).toString(), modelSecondprior.get(0).toString(), modelSecondprior.get(1).toString());
+                    JOptionPane.showMessageDialog(null, "Successfully saved your choice.", "Success!", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
         
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 
