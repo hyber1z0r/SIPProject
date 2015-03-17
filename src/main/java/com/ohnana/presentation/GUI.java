@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.ohnana.presentation;
 
 import com.ohnana.control.Facade;
@@ -12,6 +13,8 @@ import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.ElectiveSubject;
 import com.ohnana.model.Student;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -61,6 +64,8 @@ public class GUI extends javax.swing.JFrame {
         fillPools(facade.getAllElectiveSubject());
         students = facade.getAllStudents();
         analyzeStudents();
+       
+        fillSubjects();
     }
 
     private void initUI() {
@@ -132,6 +137,50 @@ public class GUI extends javax.swing.JFrame {
         firstPrior2 = (DefaultComboBoxModel) jComboBoxFirstPrior2.getModel();
         secondPrior1 = (DefaultComboBoxModel) jComboBoxSecondPrior1.getModel();
         secondPrior2 = (DefaultComboBoxModel) jComboBoxSecondPrior2.getModel();
+        
+        
+        //UPDATE COMBOBOX 1 
+        jComboBoxFirstPrior1.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+              // LAV VARS DER HUSKER EN CURRENT LISTE
+              firstPrior2.removeAllElements();
+              
+              List<IElectiveSubject> offeredSubjects = new ArrayList<>();
+              offeredSubjects = facade.getAllElectiveSubject();
+              
+              for (IElectiveSubject iElectiveSubject : offeredSubjects) {
+              firstPrior2.addElement(iElectiveSubject);
+              }
+                                
+              Object test = firstPrior1.getSelectedItem();
+              firstPrior2.removeElement(test);
+              secondPrior1.removeElement(test);
+              secondPrior2.removeElement(test);
+              
+
+              
+//              Object test1 = firstPrior2.getSelectedItem();
+//              firstPrior1.
+//              firstPrior1.removeElement(test1);
+//              secondPrior1.removeElement(test1);
+//              secondPrior2.removeElement(test1);
+//              
+//              Object test2 = secondPrior1.getSelectedItem();
+//              firstPrior2.removeElement(test2);
+//              firstPrior1.removeElement(test2);
+//              secondPrior2.removeElement(test2);
+//              
+//              Object test3 = secondPrior2.getSelectedItem();
+//              firstPrior1.removeElement(test2);
+//              firstPrior2.removeElement(test2);
+//              secondPrior1.removeElement(test2);              
+            }
+            
+        });
+
+        
     }
 
     /**
@@ -629,30 +678,21 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 //    //METHODS 
-//    public IStudent sortStudent(Student student, String blokA, String blokB) {
-//        
-//        boolean firstPrioA = false;
-//        boolean firstPrioB = false;
-//        boolean secondPrioA = false;
-//        boolean secondPrioB = false;
-//        
-//        List<String> studentFirstPrio = student.getFirstP();
-//        List<String> studentSecondPrio = student.getSecondP();
-//        
-//        if(blokA.equals(studentFirstPrio.get(0)) && blokB.equals(studentFirstPrio.get(1))) {
-//            // SCENARIO: 1,1
-//            
-//            return null;
-//        }
-//        if(blokA.equals(studentFirstPrio.get(0)) || blokB.equals(studentFirstPrio.get(1))) {
-//            // SCENARIO: 1,2
-//            
-//            return null;
-//        }
-//        
-//        return null;
-//    }
+        //filling prio comboboxes
+    public void fillSubjects() {
+        List<IElectiveSubject> offeredSubjects = new ArrayList<>();
+        offeredSubjects = facade.getAllElectiveSubject();
+        
+        for (IElectiveSubject iElectiveSubject : offeredSubjects) {
+            firstPrior1.addElement(iElectiveSubject);    
+            firstPrior2.addElement(iElectiveSubject);
+            secondPrior1.addElement(iElectiveSubject);
+            secondPrior2.addElement(iElectiveSubject);
+        }
+        
 
+    }
+    
     private void jTextFieldTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTitleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTitleActionPerformed
