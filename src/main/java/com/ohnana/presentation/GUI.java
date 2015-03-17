@@ -41,20 +41,16 @@ public class GUI extends javax.swing.JFrame {
     private DefaultListModel modelList1dot0;
     private DefaultListModel modelList2dot0;
     private DefaultListModel modelList0dot0;
-    private DefaultListModel modelListSelectedSubjects;
-    private DefaultComboBoxModel modelComboBoxTeachers;
-    private DefaultComboBoxModel modelComboBoxProposer;
+
     private final List<IStudent> students;
 
     public GUI() {
         initComponents();
         initUI();
         facade = Facade.getFacade();
-        fillTeachers(facade.getAllTeachers());
         fillList1Round(facade.getAllProposals());
         fillPools(facade.getAllElectiveSubject());
         students = facade.getAllStudents();
-        fillStudents();
         analyzeStudents();
     }
 
@@ -108,8 +104,7 @@ public class GUI extends javax.swing.JFrame {
         jList1dot0.setModel(new DefaultListModel());
         jList2dot0.setModel(new DefaultListModel());
         jList0dot0.setModel(new DefaultListModel());
-        jComboBoxTeachers.setModel(new DefaultComboBoxModel());
-        jComboBoxProposers.setModel(new DefaultComboBoxModel());
+        
 
         modelAddedProposals = (DefaultListModel) jListAddedProposals.getModel();
         modelProposals = (DefaultListModel) jListProposals.getModel();
@@ -120,8 +115,7 @@ public class GUI extends javax.swing.JFrame {
         modelList1dot0 = (DefaultListModel) jList1dot0.getModel();
         modelList2dot0 = (DefaultListModel) jList2dot0.getModel();
         modelList0dot0 = (DefaultListModel) jList0dot0.getModel();
-        modelComboBoxProposer = (DefaultComboBoxModel) jComboBoxProposers.getModel();
-        modelComboBoxTeachers = (DefaultComboBoxModel) jComboBoxTeachers.getModel();
+
     }
 
     /**
@@ -141,17 +135,6 @@ public class GUI extends javax.swing.JFrame {
         jButtonAddProposal = new javax.swing.JButton();
         jButtonRemoveProposal = new javax.swing.JButton();
         jButtonSaveRound1 = new javax.swing.JButton();
-        AddSubject = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextFieldTitle = new javax.swing.JTextField();
-        jComboBoxTeachers = new javax.swing.JComboBox();
-        jButtonCommit = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaDescription = new javax.swing.JTextArea();
-        jComboBoxProposers = new javax.swing.JComboBox();
-        jLabel12 = new javax.swing.JLabel();
         HoPFinalSelection = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jList1dot1 = new javax.swing.JList();
@@ -256,99 +239,6 @@ public class GUI extends javax.swing.JFrame {
         );
 
         getContentPane().add(HoP1RoundSelection, "card3");
-
-        jLabel1.setText("Title");
-
-        jLabel2.setText("Description");
-
-        jLabel3.setText("Teacher");
-
-        jTextFieldTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTitleActionPerformed(evt);
-            }
-        });
-
-        jComboBoxTeachers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxTeachers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxTeachersActionPerformed(evt);
-            }
-        });
-
-        jButtonCommit.setText("Commit");
-        jButtonCommit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCommitActionPerformed(evt);
-            }
-        });
-
-        jTextAreaDescription.setColumns(20);
-        jTextAreaDescription.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaDescription);
-
-        jComboBoxProposers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel12.setText("Proposer");
-
-        javax.swing.GroupLayout AddSubjectLayout = new javax.swing.GroupLayout(AddSubject);
-        AddSubject.setLayout(AddSubjectLayout);
-        AddSubjectLayout.setHorizontalGroup(
-            AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddSubjectLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddSubjectLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddSubjectLayout.createSequentialGroup()
-                        .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(AddSubjectLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                                .addComponent(jButtonCommit))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AddSubjectLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel12))
-                                .addGap(25, 25, 25)
-                                .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxProposers, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxTeachers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(56, 56, 56))))
-        );
-        AddSubjectLayout.setVerticalGroup(
-            AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddSubjectLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxTeachers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddSubjectLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel2))
-                    .addGroup(AddSubjectLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxProposers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(AddSubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                    .addGroup(AddSubjectLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCommit)))
-                .addGap(46, 46, 46))
-        );
-
-        getContentPane().add(AddSubject, "card5");
 
         HoPFinalSelection.setPreferredSize(new java.awt.Dimension(650, 540));
 
@@ -514,61 +404,12 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jTextFieldTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTitleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTitleActionPerformed
-
     private void jButtonRemoveProposalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveProposalActionPerformed
         if (jListAddedProposals.getSelectedIndex() != -1) {
             modelProposals.addElement(jListAddedProposals.getSelectedValue());
             modelAddedProposals.removeElementAt(jListAddedProposals.getSelectedIndex());
         }
     }//GEN-LAST:event_jButtonRemoveProposalActionPerformed
-
-    private void jComboBoxTeachersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTeachersActionPerformed
-
-    }//GEN-LAST:event_jComboBoxTeachersActionPerformed
-
-    private void jButtonCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCommitActionPerformed
-        /* Arg checking */
-        Stack<String> errorStack = new Stack();
-        if (jTextFieldTitle.getText().trim().isEmpty()) {
-            errorStack.push("no title");
-        }
-        if (jComboBoxTeachers.getSelectedItem().toString().equals("Select teacher")) {
-            errorStack.push("no teacher");
-        }
-        if (jTextAreaDescription.getText().trim().isEmpty()) {
-            errorStack.push("no description");
-        }
-        if (jComboBoxProposers.getSelectedItem().toString().equals("Select proposer")) {
-            errorStack.push("no proposer");
-        }
-        if (jTextAreaDescription.getText().length() > 255) {
-            errorStack.push("description too long, max characters: 255");
-        }
-
-        if (errorStack.size() > 0) {
-            String res = "Elective subject rejected: \n";
-            for (String s : errorStack) {
-                res += s + "\n";
-            }
-            JOptionPane.showMessageDialog(null, res, "Alert!", JOptionPane.ERROR_MESSAGE);
-            
-        } else { /* Arg checking end */
-            // no missing information
-            int result = JOptionPane.showConfirmDialog(null, "Are you sure", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (result == JOptionPane.YES_OPTION) {
-                try {
-                    // put it into the database here
-                    facade.insertProposal(jTextFieldTitle.getText(), jTextAreaDescription.getText(), (ITeacher) jComboBoxTeachers.getSelectedItem(), jComboBoxProposers.getSelectedItem().toString());
-                    JOptionPane.showMessageDialog(null, "Successfully created your proposal", "Success!", JOptionPane.INFORMATION_MESSAGE);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-    }//GEN-LAST:event_jButtonCommitActionPerformed
 
     private void jButtonAddProposalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProposalActionPerformed
         if (jListProposals.getSelectedIndex() != -1) {
@@ -591,21 +432,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSaveRound1ActionPerformed
 
-    private void fillTeachers(List<ITeacher> teachers) {
-        modelComboBoxTeachers.removeAllElements();
-        modelComboBoxTeachers.addElement("Select teacher");
-        modelComboBoxProposer.addElement("Select proposer");
-        for (ITeacher teacher : teachers) {
-            modelComboBoxTeachers.addElement(teacher);
-            modelComboBoxProposer.addElement(teacher);
-        }
-    }
     
-    private void fillStudents() {
-        for(IStudent student : students) {
-            modelComboBoxProposer.addElement(student);
-        }
-    }
 
     private void clearAllListsInFinalSelection() {
         modelList1dot1.removeAllElements();
@@ -751,23 +578,15 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel AddSubject;
     private javax.swing.JPanel HoP1RoundSelection;
     private javax.swing.JPanel HoPFinalSelection;
     private javax.swing.JButton jButtonAddProposal;
-    private javax.swing.JButton jButtonCommit;
     private javax.swing.JButton jButtonRemoveProposal;
     private javax.swing.JButton jButtonSave;
     private javax.swing.JButton jButtonSaveRound1;
     private javax.swing.JButton jButtonShowSelectedSubjects;
-    private javax.swing.JComboBox jComboBoxProposers;
-    private javax.swing.JComboBox jComboBoxTeachers;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -782,7 +601,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JList jList2dot2;
     private javax.swing.JList jListAddedProposals;
     private javax.swing.JList jListProposals;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -793,7 +611,5 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTablePools;
-    private javax.swing.JTextArea jTextAreaDescription;
-    private javax.swing.JTextField jTextFieldTitle;
     // End of variables declaration//GEN-END:variables
 }
