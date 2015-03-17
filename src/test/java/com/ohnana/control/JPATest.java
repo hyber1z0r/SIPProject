@@ -63,7 +63,7 @@ public class JPATest {
         // Getting all teachers, and inserting a new proposal
         List<ITeacher> allTeachers = manager.getAllTeachers();
         List<IProposal> oldProposals = manager.getAllProposals();
-        IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0));
+        IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0), "Damjan Filipovic");
         manager.insertProposal(p1);
         List<IProposal> proposals = manager.getAllProposals();
         assertEquals(proposals.size(), oldProposals.size() + 1);
@@ -74,7 +74,7 @@ public class JPATest {
         // insert new proposal, to make test independent of other test cases
         List<ITeacher> allTeachers = manager.getAllTeachers();
         List<IProposal> oldProposals = manager.getAllProposals();
-        IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0));
+        IProposal p1 = new Proposal("Android", "Learn about the android platform", allTeachers.get(0), "Damjan Filipovic");
         manager.insertProposal(p1);
 
         final List<IProposal> allProposals = manager.getAllProposals();

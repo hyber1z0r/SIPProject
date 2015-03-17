@@ -22,4 +22,5 @@ public interface IStudent {
     void addFirstPrio(String name);
     
     void addSecondPrio(String name);
+    
 }

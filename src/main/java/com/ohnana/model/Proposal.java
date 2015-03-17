@@ -34,14 +34,18 @@ public class Proposal implements IProposal, Serializable {
     private String title;
     private String description;
     private ITeacher teacher;
+    private String name;
+
+   
 
     public Proposal() {
     }
 
-    public Proposal(String title, String description, ITeacher teacher) {
+    public Proposal(String title, String description, ITeacher teacher, String name) {
         this.title = title;
         this.description = description;
         this.teacher = teacher;
+        this.name = name;
     }
 
     @Override
@@ -63,6 +67,14 @@ public class Proposal implements IProposal, Serializable {
         return id;
     }
 
+     public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;

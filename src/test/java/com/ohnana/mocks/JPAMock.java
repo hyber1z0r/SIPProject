@@ -67,4 +67,9 @@ public class JPAMock implements IJPAManager {
     public List<IStudent> getAllStudents() {
         return students;
     }
+
+    @Override
+    public void updateStudentSubject(int id, String... subjects) throws Exception {
+       
+    }
 }

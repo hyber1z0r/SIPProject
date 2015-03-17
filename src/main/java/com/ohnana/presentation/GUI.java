@@ -732,7 +732,7 @@ public class GUI extends javax.swing.JFrame {
             if (result == JOptionPane.YES_OPTION) {
                 try {
                     // put it into the database here
-                    facade.insertProposal(jTextFieldTitle.getText(), jTextAreaDescription.getText(), (ITeacher) jComboBoxFillTeacher.getSelectedItem());
+                    facade.insertProposal(jTextFieldTitle.getText(), jTextAreaDescription.getText(), (ITeacher) jComboBoxFillTeacher.getSelectedItem(), "Damjan Filipovic");
                     JOptionPane.showMessageDialog(null, "Successfully created your proposal", "Success!", JOptionPane.INFORMATION_MESSAGE);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);

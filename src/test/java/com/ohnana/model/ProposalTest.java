@@ -26,7 +26,7 @@ public class ProposalTest {
         String description = "Learning about android";
         final ITeacher teacher = context.mock(ITeacher.class);
 
-        Proposal proposal = new Proposal(title, description, teacher);
+        Proposal proposal = new Proposal(title, description, teacher, "Damjan Filipovic");
         assertThat(proposal.getTitle(), is(title));
         assertThat(proposal.getDescription(), is(description));
         assertThat(proposal.getTeacher(), is(teacher));

@@ -30,9 +30,9 @@ public class Facade {
         return instance;
     }
 
-    public void insertProposal(String title, String description, ITeacher teacher) throws Exception {
+    public void insertProposal(String title, String description, ITeacher teacher, String name) throws Exception {
         // check args
-        IProposal proposal = new Proposal(title, description, teacher);
+        IProposal proposal = new Proposal(title, description, teacher, name);
         manager.insertProposal(proposal);
     }
 

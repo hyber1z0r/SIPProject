@@ -37,17 +37,17 @@ public class JPAMockTest {
         String title = "Android";
         String description = "Learning about android";
         final ITeacher teacher = context.mock(ITeacher.class);
-        IProposal proposal = new Proposal(title, description, teacher);
+        IProposal proposal = new Proposal(title, description, teacher, "Damjan Filipovic");
         manager.insertProposal(proposal);
     }
 
     @Test
     public void testGetAllProposal() throws Exception {
         ITeacher teacher = new Teacher();
-        IProposal ip1 = new Proposal("Math", "Learn to plus and minus", teacher);
-        IProposal ip2 = new Proposal("Danish", "Learn the danish food", teacher);
-        IProposal ip3 = new Proposal("IT", "Basics in Word and PowerPoint", teacher);
-        IProposal ip4 = new Proposal("Swimming", "Learn to swim", teacher);
+        IProposal ip1 = new Proposal("Math", "Learn to plus and minus", teacher, "Damjan Filipovic");
+        IProposal ip2 = new Proposal("Danish", "Learn the danish food", teacher, "Damjan Filipovic");
+        IProposal ip3 = new Proposal("IT", "Basics in Word and PowerPoint", teacher, "Damjan Filipovic");
+        IProposal ip4 = new Proposal("Swimming", "Learn to swim", teacher, "Damjan Filipovic");
         manager.insertProposal(ip1);
         manager.insertProposal(ip2);
         manager.insertProposal(ip3);

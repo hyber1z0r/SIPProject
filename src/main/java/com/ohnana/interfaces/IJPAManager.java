@@ -23,4 +23,6 @@ public interface IJPAManager {
     void insertStudent(IStudent student) throws Exception;
     
     List<IStudent> getAllStudents();
+    
+    void updateStudentSubject(int id, String... subjects) throws Exception;
 }

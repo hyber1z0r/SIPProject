@@ -153,4 +153,24 @@ public class JPAManager implements IJPAManager {
             em.close();
         }
     }
+    
+    @Override
+    public void updateStudentSubject(int id, String... subjects) throws Exception{
+        EntityManager em = emf.createEntityManager();
+        IStudent student = em.find(IStudent.class, id);
+         em.getTransaction().begin();
+        try {
+            student.addFirstPrio(subjects[0]);
+            student.addFirstPrio(subjects[1]);
+            student.addSecondPrio(subjects[2]);
+            student.addSecondPrio(subjects[3]);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            em.getTransaction().rollback();
+            throw new Exception("Database error: update student subjects. Did rollback");
+        } finally {
+            em.close();
+        }
+    }
 }
