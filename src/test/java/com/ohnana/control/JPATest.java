@@ -106,5 +106,26 @@ public class JPATest {
         List<IStudent> allStudents = manager.getAllStudents();
         assertThat(allStudents.size(), is(oldStudents.size() + 1));
     }
+    
+    @Test
+    public void testUpdateStudentSubject() throws Exception
+    {
+        IStudent s1 = new Student("Damjan Filipovic");
+        manager.insertStudent(s1);
+        List<IStudent> allStudents = manager.getAllStudents();
+        IStudent getFirst = allStudents.get(0);
+        assertTrue(getFirst.getFirstP().isEmpty());
+        getFirst.addFirstPrio("Android");
+        getFirst.addFirstPrio("C#");
+        getFirst.addSecondPrio("Games");
+        getFirst.addSecondPrio("AI");
+        assertEquals(getFirst.getFirstP().size(), 2);
+        assertEquals(getFirst.getSecondP().size(), 2);
+        manager.updateStudentSubject(getFirst.getId(), "Android", "C#", "Games", "AI");
+        List<IStudent> dasStudents = manager.getAllStudents();
+        IStudent getDasStudent = allStudents.get(0);
+        assertEquals(getDasStudent.getFirstP(),getFirst.getFirstP());
+        assertEquals(getDasStudent.getSecondP(),getFirst.getSecondP());
+    }
 
 }

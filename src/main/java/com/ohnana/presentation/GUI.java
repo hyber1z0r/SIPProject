@@ -135,6 +135,7 @@ public class GUI extends javax.swing.JFrame {
         jButtonAddProposal = new javax.swing.JButton();
         jButtonRemoveProposal = new javax.swing.JButton();
         jButtonSaveRound1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         HoPFinalSelection = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jList1dot1 = new javax.swing.JList();
@@ -201,6 +202,9 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel12.setText("Select the elective subject that YOU like");
+
         javax.swing.GroupLayout HoP1RoundSelectionLayout = new javax.swing.GroupLayout(HoP1RoundSelection);
         HoP1RoundSelection.setLayout(HoP1RoundSelectionLayout);
         HoP1RoundSelectionLayout.setHorizontalGroup(
@@ -218,13 +222,18 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
                         .addGap(244, 244, 244)
-                        .addComponent(jButtonSaveRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                        .addComponent(jButtonSaveRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HoP1RoundSelectionLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel12)))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         HoP1RoundSelectionLayout.setVerticalGroup(
             HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoP1RoundSelectionLayout.createSequentialGroup()
-                .addContainerGap(186, Short.MAX_VALUE)
+                .addContainerGap(127, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(36, 36, 36)
                 .addGroup(HoP1RoundSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,7 +373,7 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSave))
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(119, 131, Short.MAX_VALUE))
+                .addGap(119, 172, Short.MAX_VALUE))
         );
         HoPFinalSelectionLayout.setVerticalGroup(
             HoPFinalSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,6 +596,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonShowSelectedSubjects;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
