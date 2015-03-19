@@ -3,6 +3,7 @@ package com.ohnana.mocks;
 import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.ISavedSubject;
 import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
 import java.util.ArrayList;
@@ -70,6 +71,11 @@ public class JPAMock implements IJPAManager {
 
     @Override
     public void updateStudentSubject(int id, String... subjects) throws Exception {
-       
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void insertSubject(ISavedSubject subject) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

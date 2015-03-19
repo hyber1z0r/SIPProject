@@ -3,6 +3,7 @@ package com.ohnana.control;
 import com.ohnana.interfaces.IJPAManager;
 import com.ohnana.interfaces.IElectiveSubject;
 import com.ohnana.interfaces.IProposal;
+import com.ohnana.interfaces.ISavedSubject;
 import com.ohnana.interfaces.IStudent;
 import com.ohnana.interfaces.ITeacher;
 import com.ohnana.model.Student;
@@ -174,6 +175,22 @@ public class JPAManager implements IJPAManager {
             ex.printStackTrace();
             em.getTransaction().rollback();
             throw new Exception("Database error: update student subjects. Did rollback");
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void insertSubject(ISavedSubject subject) throws Exception {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.persist(subject);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            em.getTransaction().rollback();
+            throw new Exception("Database error: insert subject. Did rollback");
         } finally {
             em.close();
         }

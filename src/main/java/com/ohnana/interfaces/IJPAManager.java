@@ -15,14 +15,16 @@ public interface IJPAManager {
     void insertElectiveSubjects(List<IElectiveSubject> es) throws Exception;
 
     List<IProposal> getAllProposals();
-    
+
     List<ITeacher> getAllTeachers();
-        
+
     List<IElectiveSubject> getAllElectiveSubjects();
 
     void insertStudent(IStudent student) throws Exception;
-    
+
     List<IStudent> getAllStudents();
-    
+
     void updateStudentSubject(int id, String... subjects) throws Exception;
+
+    void insertSubject(ISavedSubject subject) throws Exception;
 }
