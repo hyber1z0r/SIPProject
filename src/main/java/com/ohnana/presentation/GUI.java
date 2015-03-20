@@ -488,29 +488,117 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    private void analyzeStudents() {
+    
+     private void analyzeStudents() {
         clearAllListsInFinalSelection();
         List<String> selections = new ArrayList(); // list for subjects checked off
+        
+        //selections A & B pool
+        List<String> selectionsA = new ArrayList();
+        List<String> selectionsB = new ArrayList();
+        
+
         // loop through the table
         for (int i = 0; i < modelTablePools.getRowCount(); i++) {
             // if its checked off, add the text next to it
             if ((boolean) modelTablePools.getValueAt(i, 0) == true) {
-                selections.add(modelTablePools.getValueAt(i, 1).toString());
+                //selections.add(modelTablePools.getValueAt(i, 1).toString());
+                selectionsA.add(modelTablePools.getValueAt(i, 1).toString());
             }
             if ((boolean) modelTablePools.getValueAt(i, 2) == true) {
-                selections.add(modelTablePools.getValueAt(i, 3).toString());
+                //selections.add(modelTablePools.getValueAt(i, 3).toString());
+                selectionsB.add(modelTablePools.getValueAt(i, 3).toString());
             }
         }
-        // loop through students, checking their priorities against the selections in the table
-//        for (IStudent student : students) {
-//            String firstA = student.getFirstP().get(0);
-//            String firstB = student.getFirstP().get(1);
-//            String secondA = student.getSecondP().get(0);
-//            String secondB = student.getSecondP().get(1);
-//            boolean isFirstA = false;
-//            boolean isFirstB = false;
-//            boolean isSecondA = false;
-//            boolean isSecondB = false;
+        
+         //loop through students, checking their priorities against the selections in the table
+        for (IStudent student : students) {
+            String firstA = student.getFirstP().get(0);
+            String firstB = student.getFirstP().get(1);
+            String secondA = student.getSecondP().get(0);
+            String secondB = student.getSecondP().get(1);
+            
+            boolean AisFirstA = false;
+            boolean AisFirstB = false;
+            boolean AisSecondA = false;
+            boolean AisSecondB = false;
+          
+            boolean BisFirstA = false;
+            boolean BisFirstB = false;
+            boolean BisSecondA = false;
+            boolean BisSecondB = false;
+
+            
+            //Anders TEST
+            for (String string : selectionsA) {
+                
+                if(string.equals(firstA)) {
+                    AisFirstA = true;
+                }
+                if(string.equals(firstB)) {
+                    AisFirstB = true;
+                }
+                if(string.equals(secondA)) {
+                    AisSecondA = true;
+                }
+                if(string.equals(secondB)) {
+                    AisSecondB = true;
+                }
+            }
+            for (String string : selectionsB) {
+                
+                if(string.equals(firstA)) {
+                    BisFirstA = true;
+                }
+                if(string.equals(firstB)) {
+                    BisFirstB = true;
+                }
+                if(string.equals(secondA)) {
+                    BisSecondA = true;
+                }
+                if(string.equals(secondB)) {
+                    BisSecondB = true;
+                }
+            }
+            // 1.1 SCENARIO
+            if((AisFirstA && BisFirstB) || (AisFirstB && BisFirstA)) {
+                modelList1dot1.addElement(student);                
+            }
+            
+            // 1.2 SCENARIO
+            else if( ((AisFirstA || AisFirstB) && (BisSecondA || BisSecondB))
+                    || ((BisFirstA || BisFirstB) && (AisSecondA || AisSecondB))) {
+                modelList1dot2.addElement(student);
+            
+            }
+            // 2.2 SCENARIO
+            else if((AisSecondA || AisSecondB) && (BisSecondA || BisSecondB)) {
+                 modelList2dot2.addElement(student);
+            
+            }
+            
+            // 1.0 SCENARIO
+            else if((AisFirstA || AisFirstB) || (BisFirstA || BisFirstB)) {
+              
+                modelList1dot0.addElement(student);
+            }
+            
+            // 2.0 SCENARIO
+            else if((AisSecondA || AisSecondB) || (BisSecondA || BisSecondB)) {
+                
+                modelList2dot0.addElement(student);
+            }
+            
+            // 0.0 SCENARIO
+            else {
+                modelList0dot0.addElement(student);
+                
+            }
+            
+            //-----------
+            
+            
+            
 //            for (String s : selections) {
 //                if (firstA.equals(s)) {
 //                    isFirstA = true;
@@ -546,7 +634,7 @@ public class GUI extends javax.swing.JFrame {
 //                //Scenario 0,0
 //                modelList0dot0.addElement(student);
 //            }
-//        }
+        }
     }
 
     /**
