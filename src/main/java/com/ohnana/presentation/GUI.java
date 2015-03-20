@@ -29,6 +29,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    
     //FIELDS 
     private final Facade facade;
     private String user = "PELO";
@@ -569,12 +570,14 @@ public class GUI extends javax.swing.JFrame {
             // 1.2 SCENARIO
             else if( ((AisFirstA || AisFirstB) && (BisSecondA || BisSecondB))
                     || ((BisFirstA || BisFirstB) && (AisSecondA || AisSecondB))) {
+                
                 modelList1dot2.addElement(student);
             
             }
             // 2.2 SCENARIO
             else if((AisSecondA || AisSecondB) && (BisSecondA || BisSecondB)) {
-                 modelList2dot2.addElement(student);
+                
+                modelList2dot2.addElement(student);
             
             }
             
@@ -592,6 +595,7 @@ public class GUI extends javax.swing.JFrame {
             
             // 0.0 SCENARIO
             else {
+
                 modelList0dot0.addElement(student);
                 
             }
